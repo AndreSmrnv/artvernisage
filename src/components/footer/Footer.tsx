@@ -1,1 +1,6 @@
-export const Footer: FC = () => 
+import {FC} from "react";
+
+export const Footer: FC = () => (
+    <>
+    </>
+)
