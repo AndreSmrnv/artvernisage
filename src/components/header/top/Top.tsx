@@ -1,5 +1,5 @@
 import {Logo} from "./Logo";
-import {HandbagSimpleIcon, HeartIcon, MagnifyingGlassIcon} from "./icons";
+import {HandbagSimpleIcon, HeartIcon, MagnifyingGlassIcon} from "../../icons";
 import {Container} from "../../layout";
 import s from './Top.module.scss';
 import cn from 'classnames';
