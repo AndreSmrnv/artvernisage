@@ -3,35 +3,40 @@ import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
 import {list} from "../../../services/data";
 import s from "../Footer.module.scss";
+import {useSelector} from "react-redux";
 
 
 
 
-export const NavLinks: FC = () => (
-    <nav className={s.category}>
-        <h2 className={cn(s.title, s.categoryTitle)}>Каталог</h2>
-        <ul className={s.categoryList}>
-            {list.map((item) => (
-                <li key={item.link} className={s.categoryItem}>
-                    <h3 className={s.categorySubtitle}>
-                        <NavLink to={item.link} className={s.link}>{item.title}</NavLink>
-                    </h3>
-                    <ul className={s.categorySublist}>
-                        {item.categories.map(category =>(
-                            <li key={category.link}>
-                                <NavLink
-                                    className={s.link}
-                                    to={`${item.link}/${category.link}`}
-                                >
-                                    {category.title}
-                                </NavLink>
-                            </li>
-                        ))}
+export const NavLinks: FC = () => {
+    const { groupList, categories } = useSelector(state => state.navigation);
 
-                    </ul>
-                </li>
-            ))}
-        </ul>
+    return (
+        <nav className={s.category}>
+            <h2 className={cn(s.title, s.categoryTitle)}>Каталог</h2>
+            <ul className={s.categoryList}>
+                {groupList.map((group) => (
+                    <li key={group} className={s.categoryItem}>
+                        <h3 className={s.categorySubtitle}>
+                            <NavLink to={group} className={s.link}>{categories[group].title}</NavLink>
+                        </h3>
+                        <ul className={s.categorySublist}>
+                            {categories[group].list.map(category =>(
+                                <li key={category.slug}>
+                                    <NavLink
+                                        className={s.link}
+                                        to={`${group}/${category.slug}`}
+                                    >
+                                        {category.title}
+                                    </NavLink>
+                                </li>
+                            ))}
 
-    </nav>
-);
+                        </ul>
+                    </li>
+                ))}
+            </ul>
+
+        </nav>
+    );
+}
