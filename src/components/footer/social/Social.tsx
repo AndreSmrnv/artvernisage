@@ -5,7 +5,6 @@ import s from "../Footer.module.scss";
 export const Social: FC = () => (
     <div className={s.social}>
         <h2 className={cn(s.title, s.socialTitle)}>Связаться с нами</h2>
-        <p className={s.socialSubtitle}>Контакты и адреса магазинов</p>
         <ul className={s.socialList}>
             <li>
                 <a href="#" className={cn(s.link, s.socialLinkVK)}>
