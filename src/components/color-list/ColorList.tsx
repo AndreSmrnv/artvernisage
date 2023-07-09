@@ -6,12 +6,12 @@ export const ColorList: FC = ({colors}) => {
     const {colorList: _colorList} = useSelector(state => state.colors);
     const colorList = _colorList.filter(color => colors.includes(color.id));
 
+console.debug(colorList);
+
     return (
         <ul className={s.colorList}>
             {   colorList?.map( color =>
-                    <li>
-                        {color.id}
-                    </li>
+                    <li className={s.color} style={{'--data-color': color.code}}  key={color.id} />
                 )
 
             }
