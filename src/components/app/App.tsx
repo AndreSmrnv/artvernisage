@@ -5,5 +5,5 @@ import {router} from "../../services/routes";
 
 export const App: FC = () => {
 
-    return <RouterProvider router={router}></RouterProvider>
+    return <RouterProvider router={router} />
 }

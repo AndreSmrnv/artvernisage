@@ -17,3 +17,13 @@ export const list = [
             { link: 'thermal', title: 'Термобелье'},
         ]},
 ];
+
+export const categoriesList = [
+            { slug: 'bras', title: 'Бюстгальтеры'},
+            { slug: 'panties', title: 'Трусы'},
+            { slug: 'socks', title: 'Носки'},
+            { slug: 'bathrobes', title: 'Халаты'},
+            { slug: 'thermal', title: 'Термобелье'},
+            { slug: 'pijams', title: 'Пижамы'},
+];
+
