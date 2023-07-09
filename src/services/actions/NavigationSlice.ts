@@ -1,12 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import {CATEGORY_URL} from "../api";
+import {CATEGORIES_URL} from "../api";
 
 
 
 export const fetchNavigation = createAsyncThunk(
     "navigation/fetchNavigation",
     async () => {
-        const response = await fetch(CATEGORY_URL);
+        const response = await fetch(CATEGORIES_URL);
         const data = await response.json();
         return data;
     }
@@ -15,15 +15,15 @@ export const fetchNavigation = createAsyncThunk(
 const navigationSlice = createSlice ({
     name: 'navigation',
     initialState : {
-        activeGender: 'women',
+        activeGroup: 'women',
         status: 'idle',
         categories: {},
-        genderList: [],
+        groupList: [],
         error: null,
     },
     reducers: {
-        setActiveGender: (state, action) => {
-            state.activeGender = action.payload;
+        setActiveGroup: (state, {payload}) => {
+            state.activeGroup = payload;
         }
     },
     extraReducers: (builder) => {
@@ -31,10 +31,10 @@ const navigationSlice = createSlice ({
             .addCase(fetchNavigation.pending, (state) => {
                 state.status = 'loading';
             })
-            .addCase(fetchNavigation.fulfilled, (state, action) => {
+            .addCase(fetchNavigation.fulfilled, (state, {payload}) => {
                 state.status = 'success';
-                state.categories = action.payload;
-                state.genderList = Object.keys(action.payload);
+                state.categories = payload;
+                state.groupList = Object.keys(payload);
             })
             .addCase(fetchNavigation.rejected, (state, action) => {
                 state.status = 'failed';
@@ -43,6 +43,6 @@ const navigationSlice = createSlice ({
     }
 });
 
-export const {setActiveGender} = navigationSlice.actions;
+export const {setActiveGroup} = navigationSlice.actions;
 
 export default navigationSlice.reducer;
