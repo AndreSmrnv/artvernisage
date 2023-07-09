@@ -1,11 +1,8 @@
-import {FC} from "react";
-import { NavLink } from 'react-router-dom';
-import cn from 'classnames';
-import {list} from "../../../services/data";
-import s from "../Footer.module.scss";
-import {useSelector} from "react-redux";
-
-
+import {FC}             from "react";
+import { NavLink }      from 'react-router-dom';
+import {useSelector}    from "react-redux";
+import cn               from 'classnames';
+import s                from "../Footer.module.scss";
 
 
 export const NavLinks: FC = () => {
@@ -39,4 +36,4 @@ export const NavLinks: FC = () => {
 
         </nav>
     );
-}
+};

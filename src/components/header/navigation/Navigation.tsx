@@ -5,7 +5,7 @@ import {Container} from "../../layout/container";
 import {Category} from "./category";
 import {Groups} from "./groups";
 import s from "./Navigation.module.scss";
-import {setActiveGroup} from "../../../services/actions/NavigationSlice";
+import {setActiveGroup} from "../../../services/actions/navigationSlice";
 
 
 export const Navigation: FC = () => {
