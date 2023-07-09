@@ -1,9 +1,9 @@
 import {FC} from "react";
-import clN  from 'classnames';
-import      './Container.module.scss';
+import cn  from 'classnames';
+import  s  from  './Container.module.scss';
 
 export const Container: FC = ({className, children}) => (
-    <div className={clN('container', className)}>
+    <div className={cn(s.container, className)}>
         {children}
     </div>
 )
