@@ -3,6 +3,19 @@ export const GOODS_URL      = `${API_URL}/api/goods`;
 export const CATEGORIES_URL = `${API_URL}/api/categories`;
 export const COLORS_URL     = `${API_URL}/api/colors`;
 
+const getPicPath = (pic: string) =>
+    `${API_URL}/${pic}`
+;
+
+const getCategoryPath = (groupId, categoryId = '') =>
+    `catalog/${groupId}/${categoryId}`
+;
+
+export {
+    getPicPath,
+    getCategoryPath
+}
+
 /**
 Доступные методы:
     GET /api/goods - получить список всех товаров с пагинацией

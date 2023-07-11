@@ -7,8 +7,8 @@ export const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path='/' element={<HomePage/>}>
             <Route index element={<MainPage/>}/>
-            <Route path=':groupId' element={<MainPage />}/>
-            <Route path=':groupId/:categoryId' element={<MainPage />}/>
+            <Route path='catalog/:groupId' element={<MainPage />}/>
+            <Route path='catalog/:groupId/:categoryId' element={<MainPage />}/>
             <Route path='*' element={<ErrorPage/>}/>
         </Route>
     )

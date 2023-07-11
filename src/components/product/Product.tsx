@@ -1,7 +1,7 @@
 import {FC} from "react";
 import s from './Product.module.scss'
 import {NavLink} from "react-router-dom";
-import {API_URL} from "../../services/api";
+import {getPicPath} from "../../services/api";
 import {HeartIcon} from "../icons";
 import {ColorList} from "../color-list";
 
@@ -18,7 +18,7 @@ export const Product: FC = (
         <NavLink  className={s.link}
                   to={`product/${id}`}
         >
-            <img className={s.image} src={`${API_URL}/${pic}`}/>
+            <img className={s.image} src={getPicPath(pic)}/>
             <h3 className={s.title}>{title}</h3>
         </NavLink>
         <div className={s.row}>

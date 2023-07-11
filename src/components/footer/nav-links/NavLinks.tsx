@@ -3,6 +3,7 @@ import { NavLink }      from 'react-router-dom';
 import {useSelector}    from "react-redux";
 import cn               from 'classnames';
 import s                from "../Footer.module.scss";
+import {getCategoryPath} from "../../../services/api";
 
 
 export const NavLinks: FC = () => {
@@ -12,17 +13,19 @@ export const NavLinks: FC = () => {
         <nav className={s.category}>
             <h2 className={cn(s.title, s.categoryTitle)}>Каталог</h2>
             <ul className={s.categoryList}>
-                {groupList.map((group) => (
-                    <li key={group} className={s.categoryItem}>
+                {groupList.map((groupId) => (
+                    <li key={groupId} className={s.categoryItem}>
                         <h3 className={s.categorySubtitle}>
-                            <NavLink to={group} className={s.link}>{categories[group].title}</NavLink>
+                            <NavLink to={getCategoryPath(groupId)} className={s.link}>
+                                {categories[groupId].title}
+                            </NavLink>
                         </h3>
                         <ul className={s.categorySublist}>
-                            {categories[group].list.map(category =>(
+                            {categories[groupId].list.map(category =>(
                                 <li key={category.slug}>
                                     <NavLink
                                         className={s.link}
-                                        to={`${group}/${category.slug}`}
+                                        to={getCategoryPath(groupId, category.slug)}
                                     >
                                         {category.title}
                                     </NavLink>

@@ -3,6 +3,7 @@ import {useSelector}    from "react-redux";
 import {NavLink}        from 'react-router-dom';
 import cn               from 'classnames';
 import s                from "./Category.module.scss";
+import {getCategoryPath} from "../../../../services/api";
 
 
 export const Category: FC = () => {
@@ -12,12 +13,13 @@ export const Category: FC = () => {
         <ul className={s.category}>
             { status === 'success' && groupList.includes(activeGroup) &&
                 categories[activeGroup].list.map(
-                    (item) => (
-                        <li key={item.slug} className={s.item} >
+                    (category) => (
+                        <li key={category.slug} className={s.item} >
                             <NavLink
                                 className={({ isActive }) => cn(s.link, isActive && s.linkActive)}
-                                to={`${activeGroup}/${item.slug}`}
-                            > {item.title}
+                                to={ getCategoryPath(activeGroup, category.slug) }
+                            >
+                                {category.title}
                             </NavLink>
                         </li>
                     )

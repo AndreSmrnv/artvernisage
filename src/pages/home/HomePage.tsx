@@ -1,18 +1,14 @@
-import { Outlet } from 'react-router-dom';
-import {Header} from "../../components/header";
-import {Main} from "../../components/layout/main";
-import {Footer} from "../../components/footer";
-import {list} from "../../services/data";
-
-
-
+import { Outlet }   from 'react-router-dom';
+import {Header}     from "../../components/header";
+import {Main}       from "../../components/layout/main";
+import {Footer}     from "../../components/footer";
 
 export const HomePage = () => (
     <>
-        <Header list={list}/>
+        <Header />
         <Main>
             <Outlet />
         </Main>
-        <Footer list={list}/>
+        <Footer />
     </>
 )
