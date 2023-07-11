@@ -5,8 +5,11 @@ import {GOODS_URL} from "../api";
 
 export const fetchGoods = createAsyncThunk(
     "goods/fetchGoods",
-    async (group) => {
-        const response = await fetch(`${GOODS_URL}?gender=${group}`);
+    async (searchParams) => {
+        const url = new URL(GOODS_URL);
+        Object.entries(searchParams).forEach( param => param[1] && url.searchParams.append(...param) );
+
+        const response = await fetch(url);
         const data = await response.json();
         return data;
     }
