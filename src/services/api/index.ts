@@ -8,12 +8,17 @@ const getPicPath = (pic: string) =>
 ;
 
 const getCategoryPath = (groupId, categoryId = '') =>
-    `catalog/${groupId}/${categoryId}`
+    `/catalog/${groupId}/${categoryId}`
+;
+
+const getProductPath = (productId) =>
+    `/product/${productId}`
 ;
 
 export {
     getPicPath,
-    getCategoryPath
+    getCategoryPath,
+    getProductPath,
 }
 
 /**

@@ -1,35 +1,29 @@
 import {FC, useEffect}              from "react";
-import { useParams }                from 'react-router-dom'
+import { useParams }                from 'react-router-dom';
 import {useDispatch, useSelector}   from "react-redux";
-import {Container}                  from "../../components/layout/container";
-import {Product}                    from "../../components/product";
+import {Goods}                      from "../../components/goods";
+import {Banner}                     from "../../components/banner";
 import {fetchGoods}                 from "../../services/actions/goodsSlice";
-import s                            from './MainPage.module.scss'
 
 
-export const MainPage: FC = ({gender ='women'}) => {
-    const {groupId, categoryId} = useParams();
+export const MainPage: FC = () => {
+    const {groupId: gender, categoryId: category} = useParams();
     const dispatch = useDispatch();
-    const {activeGroup} = useSelector(state => state.navigation);
-    const {goodList} = useSelector(state => state.goods);
+    const {activeGroup, categories} = useSelector(state => state.navigation);
+
+    const groupData = categories[activeGroup];
+    const categoryData = groupData?.list.find( item => item.slug === category);
 
     useEffect(() => {
-        dispatch(fetchGoods(activeGroup));
-    }, [activeGroup]);
+        dispatch( fetchGoods( {gender, category } ) );
+    }, [gender, category]);
 
     return (
-        <section className={s.goods}>
-            <Container>
-                <h2 className={s.title}>Новинки {groupId}</h2>
-                <ul className={s.list}>
-                    {   goodList?.map( good =>
-                            <Product key={good.id} {...good}/>
-                        )
-                    }
-                </ul>
-            </Container>
-
-        </section>
-
+        <>
+            { !categoryData &&
+                <Banner {...groupData}/>
+            }
+            <Goods {...categoryData}/>
+        </>
     )
 };
