@@ -8,11 +8,12 @@ import {useWindowBreakpoint} from "../../services/subjects/";
 export const Banner:FC = ( {banner} ) => {
      const breakpoint = useWindowBreakpoint();
      const {description, bg , id} = banner ?? {};
+     const backgroundImageUrl = bg ? {backgroundImage: `url(${getPicPath(bg?.[breakpoint])})`} : {};
 
      return (
          <section className={s.banner}
                   style={
-                      {backgroundImage: `url(${getPicPath(bg?.[breakpoint])})`}
+                      {...backgroundImageUrl}
                   }
          >
             <Container>

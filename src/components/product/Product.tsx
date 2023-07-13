@@ -1,9 +1,9 @@
-import {FC} from "react";
-import s from './Product.module.scss'
-import {NavLink} from "react-router-dom";
+import {FC}                         from "react";
+import {NavLink}                    from "react-router-dom";
+import {HeartIcon}                  from "../icons";
+import {ColorList}                  from "../color-list";
 import {getPicPath, getProductPath} from "../../services/api";
-import {HeartIcon} from "../icons";
-import {ColorList} from "../color-list";
+import s                            from './Product.module.scss';
 
 export const Product: FC = (
     {
