@@ -5,7 +5,7 @@ import s                         from './Count.module.scss';
 export const Count:FC = (
     {
         value = 0,
-        onChange,
+        onChange ,
         className = ''
     }
 ) => {

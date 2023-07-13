@@ -6,6 +6,7 @@ import s                            from './Card.module.scss';
 import {getPicPath} from "../../../services/api";
 import {ColorList} from "../../color-list";
 import {Count} from "../../count";
+import {SizeList} from "../../size-list";
 
 
 
@@ -21,7 +22,8 @@ export const Card:FC = () => {
     } = product;
 
     const [activeColor, setActiveColor] = useState(null);
-
+    const [activeSize, setActiveSize] = useState(null);
+    const [count, setCount] = useState(null);
 
 
     return (
@@ -46,6 +48,7 @@ export const Card:FC = () => {
                         <p className={cn(s.subtitle, s.colorTitle)}>Цвет</p>
                         <ColorList onChange={setActiveColor} activeColor={activeColor} {...product}/>
                     </div>
+                    <SizeList onChange={setActiveSize} activeSize={activeSize} {...product}/>
 
                     <div className={s.description} >
                         <p className={cn(s.subtitle, s.descriptionTitle)} > Описание </p>
@@ -55,7 +58,7 @@ export const Card:FC = () => {
                     </div>
 
                     <div className={s.control} >
-                        <Count className={s.count} />
+                        <Count className={s.count} onChange={setCount}/>
 
                         <button className={s.addCart} type={'submit'}> В корзину </button>
                     </div>
