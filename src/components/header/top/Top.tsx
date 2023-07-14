@@ -3,6 +3,7 @@ import {HandbagSimpleIcon, HeartIcon, MagnifyingGlassIcon} from "../../icons";
 import {Container} from "../../layout";
 import s from './Top.module.scss';
 import cn from 'classnames';
+import {NavLink} from "react-router-dom";
 
 
 
@@ -24,15 +25,15 @@ export const Top = () => (
                     </li>
 
                     <li className={s.topNavList}>
-                    <a className={s.topLink}>
-                        <HandbagSimpleIcon />
-                    </a>
+                        <NavLink to={'/cart'} className={s.topLink}>
+                            <HandbagSimpleIcon />
+                        </NavLink>
                     </li>
 
                     <li className={s.topNavList}>
-                    <a className={s.topLink}>
-                        <HeartIcon/>
-                    </a>
+                        <NavLink to={'/favorite'} className={s.topLink}>
+                            <HeartIcon/>
+                        </NavLink>
                     </li>
                 </ul>
             </div>

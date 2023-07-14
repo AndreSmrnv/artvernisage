@@ -1,0 +1,2 @@
+export {FavoritePage} from "./FavoritePage";
+

@@ -5,7 +5,7 @@ import s from './ColorList.module.scss'
 
 export const ColorList: FC = ({colors, activeColor, onChange}) => {
     const {colorList: _colorList} = useSelector(state => state.colors);
-    const colorList = _colorList.filter(color => colors.includes(color.id));
+    const colorList = colors ? _colorList.filter(color => colors.includes(color.id)) : [];
 
     return (
         <ul className={s.colorList}>
