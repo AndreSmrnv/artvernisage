@@ -7,6 +7,7 @@ import {getPicPath} from "../../../services/api";
 import {ColorList} from "../../color-list";
 import {Count} from "../../count";
 import {SizeList} from "../../size-list";
+import {FavoriteButton} from "../btn-favorite/FavoriteButton";
 
 
 
@@ -59,8 +60,10 @@ export const Card:FC = () => {
 
                     <div className={s.control} >
                         <Count className={s.count} onChange={setCount}/>
-
-                        <button className={s.addCart} type={'submit'}> В корзину </button>
+                        <button className={s.addCart} type={'submit'}>
+                            В корзину
+                        </button>
+                        <FavoriteButton productId={id}/>
                     </div>
 
                 </form>
