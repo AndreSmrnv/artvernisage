@@ -1,0 +1,9 @@
+.like {
+  color: transparent;
+  &:hover {
+    opacity: 0.7;
+  }
+}
+.active {
+  color: tomato;
+}

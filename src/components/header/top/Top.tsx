@@ -31,7 +31,7 @@ export const Top = () => (
                     </li>
 
                     <li className={s.topNavList}>
-                        <NavLink to={'/favorite'} className={s.topLink}>
+                        <NavLink to={'/favorite'} className={cn(s.topLink, s.like)}>
                             <HeartIcon/>
                         </NavLink>
                     </li>

@@ -4,6 +4,7 @@ import {HeartIcon}                  from "../icons";
 import {ColorList}                  from "../color-list";
 import {getPicPath, getProductPath} from "../../services/api";
 import s                            from './Product.module.scss';
+import {FavoriteButton} from "./btn-favorite/FavoriteButton";
 
 export const Product: FC = (
     {
@@ -25,9 +26,8 @@ export const Product: FC = (
             <p className={s.price}>
                 &#8381; {price}
             </p>
-            <button>
-                <HeartIcon />
-            </button>
+
+            <FavoriteButton productId={id}/>
         </div>
         <ColorList colors={colors}/>
     </li>
