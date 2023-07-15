@@ -4,18 +4,15 @@ import colorsReducer        from '../actions/colorsSlice';
 import goodsReducer         from '../actions/goodsSlice';
 import productReducer       from '../actions/productSlice';
 import favoriteReducer      from '../actions/favoriteSlice';
+import cartReducer      from '../actions/cartSlice';
 
-const rootReducer = combineReducers (
+export const rootReducer = combineReducers (
     {
         navigation: navigationReducer,
         colors:     colorsReducer,
         goods:      goodsReducer,
         product:    productReducer,
         favorite:   favoriteReducer,
+        cart:       cartReducer,
     }
 );
-
-
-export {
-    rootReducer
-};

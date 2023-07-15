@@ -1,13 +1,14 @@
-import {FC, useEffect, useState} from "react";
-import {useSelector} from "react-redux";
-import {Container} from "../../layout/container";
-import cn               from 'classnames';
+import {FC, useState}    from "react";
+import {useDispatch, useSelector}   from "react-redux";
+import cn                           from 'classnames';
+import {Container}                  from "../../layout/container";
+import {getPicPath}                 from "../../../services/api";
+import {ColorList}                  from "../../color-list";
+import {Count}                      from "../../count";
+import {SizeList}                   from "../../size-list";
+import {FavoriteButton}             from "../btn-favorite/FavoriteButton";
 import s                            from './Card.module.scss';
-import {getPicPath} from "../../../services/api";
-import {ColorList} from "../../color-list";
-import {Count} from "../../count";
-import {SizeList} from "../../size-list";
-import {FavoriteButton} from "../btn-favorite/FavoriteButton";
+import {addIdCart} from "../../../services/actions/cartSlice";
 
 
 
@@ -21,17 +22,21 @@ export const Card:FC = () => {
         price,
         description,
     } = product;
-
+    const dispatch = useDispatch();
     const [activeColor, setActiveColor] = useState(null);
     const [activeSize, setActiveSize] = useState(null);
-    const [count, setCount] = useState(null);
+    const [count, setCount] = useState(1);
 
+    const formSubmitHandler = (e) => {
+        e.preventDefault();
+        dispatch(addIdCart({id, count}));
+    }
 
     return (
         <section className={s.card}>
             <Container className={s.container}>
                 <img className={s.image} src={ getPicPath(pic) } />
-                <form className={s.content}>
+                <form className={s.content} onSubmit={formSubmitHandler}>
                     <h2 className={s.title}>
                         {title}
                     </h2>

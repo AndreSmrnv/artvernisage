@@ -1,10 +1,10 @@
-import {FC, useEffect} from "react";
-import {fetchGoods} from "../../services/actions/goodsSlice";
-import {useDispatch, useSelector} from "react-redux";
-import {Goods} from "../../components/goods";
-import {InfoMsg} from "../../components/info-msg";
-import {resetFavorite} from "../../services/actions/favoriteSlice";
-import {useLocationParams} from "../../services/hooks/useLocationParams";
+import {FC, useEffect}              from "react";
+import {useDispatch, useSelector}   from "react-redux";
+import {Goods}                      from "../../components/goods";
+import {InfoMsg}                    from "../../components/info-msg";
+import {fetchGoods}                 from "../../services/actions/goodsSlice";
+import {resetFavorite}              from "../../services/actions/favoriteSlice";
+import {useLocationParams}          from "../../services/hooks/useLocationParams";
 
 
 export const FavoritePage:FC = () => {
@@ -27,6 +27,5 @@ export const FavoritePage:FC = () => {
                 : <InfoMsg message={'Кажется Вам ничего не понравилось ;)'}/>
             }
         </>
-
     )
-}
+};

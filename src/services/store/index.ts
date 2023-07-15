@@ -3,7 +3,7 @@ import { rootReducer } from '../reducers';
 import {loadReduxState, saveReduxState} from "./fetchState";
 
 const devTools  = import.meta.env.DEV;
-const KEY       = 'favorite';
+const KEY       = ['favorite', 'cart'];
 
 
 const store = configureStore(
