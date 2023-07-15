@@ -1,0 +1,2 @@
+export {InfoMsg} from "./InfoMsg";
+

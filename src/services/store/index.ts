@@ -1,28 +1,20 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { rootReducer } from '../reducers';
+import {loadReduxState, saveReduxState} from "./fetchState";
 
-const KEY = "favorite";
-const  loadState = () => {
-    try {
-        const serializedState = localStorage.getItem(`redux_${KEY}`);
-        if (!serializedState) return undefined;
-        return {[KEY]: JSON.parse(serializedState)};
-    } catch (e) {
-        return undefined;
+const devTools  = import.meta.env.DEV;
+const KEY       = 'favorite';
+
+
+const store = configureStore(
+    {
+        reducer: rootReducer,
+        devTools,
+        preloadedState: loadReduxState(KEY),
     }
-}
+);
 
-const saveState = (store)=> localStorage.setItem(`redux_${KEY}`, JSON.stringify(store[KEY]));
-
-
-
-const store = configureStore({
-    reducer: rootReducer,
-    devTools: import.meta.env.DEV,
-    preloadedState: loadState(),
-})
-
-store.subscribe( ()=>saveState(store.getState()))
+store.subscribe( ()=>saveReduxState(store.getState(), KEY) );
 
 
 export default store;

@@ -11,6 +11,9 @@ export const fetchGoods = createAsyncThunk(
 
         const response = await fetch(url);
         const data = await response.json();
+
+        console.debug("goods/fetchGoods", {data})
+
         return data;
     }
 )
@@ -19,8 +22,18 @@ const goodsSlice = createSlice ({
     name: 'goods',
     initialState : {
         status: 'idle',
-        goodList: [],
+        goodList: {
+            goods: [],
+            page: 0,
+            pages: 0,
+            totalCount: null,
+        },
         error: null,
+    },
+    reducers: {
+        setCurrentPage: (state, {payload}) => {
+            state.goodList.page = payload;
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -38,5 +51,6 @@ const goodsSlice = createSlice ({
     }
 });
 
+export const {setCurrentPage} = goodsSlice.actions;
 
 export default goodsSlice.reducer;

@@ -11,14 +11,14 @@ import {NavLinks} from "./nav-links";
 
 export const Footer: FC = () => (
     <footer>
-        <Container>
-            <div className={s.container}>
+        <Container className={s.container}>
+
                 <NavLinks />
                 <Social />
                 <Contacts />
                 <Copyright />
                 <Developments />
-            </div>
+
         </Container>
     </footer>
 );

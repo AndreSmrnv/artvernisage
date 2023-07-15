@@ -4,7 +4,7 @@ export const CATEGORIES_URL = `${API_URL}/api/categories`;
 export const COLORS_URL     = `${API_URL}/api/colors`;
 
 const getPicPath = (pic: string) =>
-    `${API_URL}/${pic}`
+    pic ? `${API_URL}/${pic}` : '#'
 ;
 
 const getCategoryPath = (groupId, categoryId = '') =>

@@ -1,6 +1,5 @@
 import {FC}                         from "react";
 import {NavLink}                    from "react-router-dom";
-import {HeartIcon}                  from "../icons";
 import {ColorList}                  from "../color-list";
 import {getPicPath, getProductPath} from "../../services/api";
 import s                            from './Product.module.scss';
