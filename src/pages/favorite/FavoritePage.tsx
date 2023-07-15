@@ -4,18 +4,19 @@ import {useDispatch, useSelector} from "react-redux";
 import {Goods} from "../../components/goods";
 import {InfoMsg} from "../../components/info-msg";
 import {resetFavorite} from "../../services/actions/favoriteSlice";
+import {useLocationParams} from "../../services/hooks/useLocationParams";
 
 
 export const FavoritePage:FC = () => {
     const dispatch = useDispatch();
     const { status, goods: list } = useSelector(state => state.favorite);
-
+    const page = useLocationParams('page');
 
     useEffect(() => {
-        dispatch( fetchGoods( {list} ) );
+        dispatch( fetchGoods( {list, page} ) );
         list.every( id => id === null ) && dispatch(  resetFavorite() );
 
-    }, [list]);
+    }, [list, page]);
 
 
     

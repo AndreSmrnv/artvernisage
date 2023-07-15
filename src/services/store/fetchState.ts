@@ -1,9 +1,9 @@
 const  loadReduxState = (key = '') => {
     try {
         const serializedState = localStorage.getItem(`redux_${key}`);
-        return serializedState ? {[key]: JSON.parse(serializedState)} : undefined;
+        return serializedState ? {[key]: JSON.parse(serializedState)} : void(0);
     } catch (e) {
-        return undefined;
+        return void(0);
     }
 };
 

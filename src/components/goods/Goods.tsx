@@ -3,6 +3,7 @@ import { useSelector} from "react-redux";
 import {Container} from "../layout/container";
 import {Product} from "../product";
 import s from "./Goods.module.scss";
+import {Pagination} from "./pagination";
 
 
 export const Goods:FC = ({title = 'Новинки'}) => {
@@ -14,11 +15,14 @@ export const Goods:FC = ({title = 'Новинки'}) => {
                     {title}
                 </h2>
                 <ul className={s.list}>
-                    {   goodList?.goods?.map( good =>
+                    {   goodList?.goods.map( good =>
                             <Product key={good.id} {...good}/>
                         )
                     }
                 </ul>
+                { goodList?.page &&
+                    <Pagination {...goodList} />
+                }
             </Container>
         </section>
     )
