@@ -2,6 +2,9 @@ import {FC, useEffect} from "react";
 import {fetchGoods} from "../../services/actions/goodsSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {Goods} from "../../components/goods";
+import {InfoMsg} from "../../components/info-msg";
+import {resetFavorite} from "../../services/actions/favoriteSlice";
+
 
 export const FavoritePage:FC = () => {
     const dispatch = useDispatch();
@@ -10,9 +13,19 @@ export const FavoritePage:FC = () => {
 
     useEffect(() => {
         dispatch( fetchGoods( {list} ) );
+        list.every( id => id === null ) && dispatch(  resetFavorite() );
+
     }, [list]);
 
+
+    
     return (
-        <Goods title={'Избранное'} />
+        <>
+            { list?.length > 0
+                ? <Goods title={'Вам понравилось'} />
+                : <InfoMsg message={'Кажется Вам ничего не понравилось ;)'}/>
+            }
+        </>
+
     )
 }
