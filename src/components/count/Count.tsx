@@ -6,7 +6,7 @@ export const Count:FC = (
     {
         id,
         value = 0,
-        onChange ,
+        onChange = (count) => void(0) ,
         className = ''
     }
 ) => {
