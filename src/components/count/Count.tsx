@@ -4,15 +4,20 @@ import s                         from './Count.module.scss';
 
 export const Count:FC = (
     {
+        id,
         value = 0,
-        onChange ,
+        onChange = (count) => void(0) ,
         className = ''
     }
 ) => {
     const [count, setCount] = useState(value);
-    useEffect( () => {
-            onChange(count);
-        },
+
+    useEffect(
+        () => setCount(value),
+        [value]
+    );
+    useEffect(
+        () => onChange(count),
         [count]
     );
 

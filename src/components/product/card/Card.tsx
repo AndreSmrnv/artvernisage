@@ -1,4 +1,4 @@
-import {FC, useState}    from "react";
+import {FC, useEffect, useState} from "react";
 import {useDispatch, useSelector}   from "react-redux";
 import cn                           from 'classnames';
 import {Container}                  from "../../layout/container";
@@ -26,6 +26,17 @@ export const Card:FC = () => {
     const [activeColor, setActiveColor] = useState(null);
     const [activeSize, setActiveSize] = useState(null);
     const [count, setCount] = useState(1);
+    const resetValues = () => {
+        setCount(1);
+        setActiveSize(null);
+        setActiveColor(null);
+    };
+
+    useEffect(
+        () => resetValues(),
+        [id]
+    )
+
 
     const formSubmitHandler = (e) => {
         e.preventDefault();
@@ -64,7 +75,7 @@ export const Card:FC = () => {
                     </div>
 
                     <div className={s.control} >
-                        <Count className={s.count} onChange={setCount}/>
+                        <Count className={s.count} value={count} onChange={setCount}/>
                         <button className={s.addCart} type={'submit'}>
                             В корзину
                         </button>
