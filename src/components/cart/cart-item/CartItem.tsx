@@ -1,16 +1,21 @@
-import {FC} from "react";
-import {useSelector} from "react-redux";
-import {getGoodById} from "../cart-list/CartList";
+import {FC, useState}               from "react";
+import {useDispatch, useSelector}   from "react-redux";
+import cn                           from "classnames";
+import {rmIdCart}                   from "../../../services/actions/cartSlice";
+import {getGoodById}                from "../cart-list/CartList";
+import {getPicPath}                 from "../../../services/api";
+import {Count}                      from "../../count";
 import s from "./CartItem.module.scss";
-import {getPicPath} from "../../../services/api";
-import cn from "classnames";
-import {Count} from "../../count";
-import {CloseIcon} from "../../icons/CloseIcon";
+
+
 
 export const CartItem:FC = ({id, count}) => {
-
+    const dispatch = useDispatch();
     const { goodList: {goods} }    = useSelector(state => state.goods);
     const {pic, title, price , code = 'black', size = 'L'} = getGoodById(id, goods);
+
+
+    const rmGoodHandler = () =>  dispatch(rmIdCart(id));
 
     return (
         <article className={s.item}>
@@ -40,12 +45,8 @@ export const CartItem:FC = ({id, count}) => {
                 </div>
             </div>
 
-            <div className={s.item}>
-                <Count value={ count}/>
-                <button className={s.del}> <CloseIcon /> </button>
-            </div>
-
-
+            <button className={s.del} type={'button'} onClick={rmGoodHandler}/>
+            <Count value={ count } />
 
 
         </article>

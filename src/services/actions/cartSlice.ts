@@ -1,5 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 
+const getItemIdx = (id, items) => items?.findIndex(item => item.id === id);
+
 const cartSlice = createSlice ({
     name: 'cart',
     initialState : {
@@ -8,15 +10,22 @@ const cartSlice = createSlice ({
     },
     reducers: {
         addIdCart: (state, {payload: {id,count}}) => {
-            const itemIdx = state.cartItems.findIndex(item => item.id === id);
+            const itemIdx = getItemIdx(id, state.cartItems);
             itemIdx !== -1
                 ? state.cartItems[itemIdx].count += count
                 : state.cartItems.push({id, count})
             ;
             state.countItems = state.cartItems?.length ?? 0;
         },
+        patchIdCart: (state, {payload: {id,count}}) => {
+            const itemIdx = getItemIdx(id, state.cartItems);
+            if (itemIdx !== -1) {
+                state.cartItems[itemIdx].count = count
+            }
+            state.countItems = state.cartItems?.length ?? 0;
+        },
         rmIdCart: (state, {payload: id}) => {
-            const itemIdx = state.cartItems.findIndex(item => item.id === id);
+            const itemIdx = getItemIdx(id, state.cartItems);
             itemIdx !== -1 && state.cartItems.splice(itemIdx, 1);
             state.countItems = state.cartItems?.length ?? 0;
         },
@@ -28,6 +37,6 @@ const cartSlice = createSlice ({
 
 });
 
-export const {addIdCart, rmIdCart, resetCart} = cartSlice.actions;
+export const {addIdCart, rmIdCart, resetCart, patchIdCart} = cartSlice.actions;
 
 export default cartSlice.reducer;

@@ -10,7 +10,7 @@ import {useSelector} from "react-redux";
 
 export const Top = () => {
     const {countItems} = useSelector(state => state.cart);
-    const {count: countFavirites} = useSelector(state => state.favorite);
+    const {count: countFavorites} = useSelector(state => state.favorite);
 
     return (
         <div className={s.top}>
@@ -42,8 +42,8 @@ export const Top = () => {
                         <li className={s.topNavList}>
                             <NavLink to={'/favorite'} className={cn(s.topLink, s.like)}>
                                 <HeartIcon/>
-                                {!!countFavirites &&
-                                    <span className={s.topLinkCount}>{countFavirites}</span>
+                                {!!countFavorites &&
+                                    <span className={s.topLinkCount}>{countFavorites}</span>
                                 }
                             </NavLink>
                         </li>
