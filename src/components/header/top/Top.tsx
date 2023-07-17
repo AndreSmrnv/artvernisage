@@ -10,6 +10,7 @@ import {useSelector} from "react-redux";
 
 export const Top = () => {
     const {countItems} = useSelector(state => state.cart);
+    const {count: countFavirites} = useSelector(state => state.favorite);
 
     return (
         <div className={s.top}>
@@ -31,15 +32,19 @@ export const Top = () => {
                         <li className={s.topNavList}>
                             <NavLink to={'/cart'} className={s.topLink}>
                                 <HandbagSimpleIcon/>
+                                {!!countItems &&
+                                    <span className={s.topLinkCount}>{countItems}</span>
+                                }
                             </NavLink>
-                            {!!countItems &&
-                                <span className={s.topLinkCount}>{countItems}</span>
-                            }
+
                         </li>
 
                         <li className={s.topNavList}>
                             <NavLink to={'/favorite'} className={cn(s.topLink, s.like)}>
                                 <HeartIcon/>
+                                {!!countFavirites &&
+                                    <span className={s.topLinkCount}>{countFavirites}</span>
+                                }
                             </NavLink>
                         </li>
                     </ul>
@@ -47,4 +52,4 @@ export const Top = () => {
             </Container>
         </div>
     )
-}
+};

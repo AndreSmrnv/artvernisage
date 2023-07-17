@@ -5,6 +5,7 @@ import s from "./CartItem.module.scss";
 import {getPicPath} from "../../../services/api";
 import cn from "classnames";
 import {Count} from "../../count";
+import {CloseIcon} from "../../icons/CloseIcon";
 
 export const CartItem:FC = ({id, count}) => {
 
@@ -39,9 +40,9 @@ export const CartItem:FC = ({id, count}) => {
                 </div>
             </div>
 
-            <div className={s.size}>
+            <div className={s.item}>
                 <Count value={ count}/>
-                <button > x </button>
+                <button className={s.del}> <CloseIcon /> </button>
             </div>
 
 

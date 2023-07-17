@@ -13,6 +13,9 @@ export const Goods:FC = ({title = 'Новинки'}) => {
             <Container>
                 <h2 className={s.title}>
                     {title}
+                    {goodList?.totalCount &&
+                        <sup> &nbsp;({goodList.totalCount})</sup>
+                    }
                 </h2>
                 <ul className={s.list}>
                     {   goodList?.goods.map( good =>
@@ -20,7 +23,7 @@ export const Goods:FC = ({title = 'Новинки'}) => {
                         )
                     }
                 </ul>
-                { goodList?.page &&
+                { !!goodList?.page && goodList?.pages > 1 &&
                     <Pagination {...goodList} />
                 }
             </Container>
