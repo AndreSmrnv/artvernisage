@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 
 import {fetchGoods} from "../../services/actions/goodsSlice";
 import {Cart} from "../../components/cart";
+import {Order} from "../../components/order";
 
 export const CartPage:FC = () => {
     const dispatch = useDispatch();
@@ -18,6 +19,7 @@ export const CartPage:FC = () => {
     return (
         <>
             <Cart />
+            <Order />
         </>
     )
 }
