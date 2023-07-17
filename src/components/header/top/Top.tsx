@@ -4,13 +4,16 @@ import {Container} from "../../layout";
 import s from './Top.module.scss';
 import cn from 'classnames';
 import {NavLink} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {toogleSearchVisible} from "../../../services/actions/searchSlice";
 
 
 
 export const Top = () => {
+    const dispatch = useDispatch();
     const {countItems} = useSelector(state => state.cart);
     const {count: countFavorites} = useSelector(state => state.favorite);
+    const toggleSearchHandler = () => dispatch(toogleSearchVisible())
 
     return (
         <div className={s.top}>
@@ -24,7 +27,7 @@ export const Top = () => {
                 <div className={s.topNavigation}>
                     <ul className={s.topNavList}>
                         <li className={s.topNavItem}>
-                            <button className={s.topLink}>
+                            <button className={s.topLink} onClick={toggleSearchHandler}>
                                 <MagnifyingGlassIcon/>
                             </button>
                         </li>
