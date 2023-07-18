@@ -8,8 +8,8 @@ const KEY       = ['favorite', 'cart'];
 
 const statusServerMiddleware = (store) => (next) => (action) => {
     const {requestStatus} = action?.meta ?? {};
-    //store.dispatch(setServerState(requestStatus))
-    console.debug('statusServerMiddleware',{requestStatus, action})
+    requestStatus && store.dispatch(setServerState(requestStatus))
+    //console.debug('statusServerMiddleware',{requestStatus, action})
     return next(action)
 };
 
