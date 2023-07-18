@@ -3,10 +3,12 @@ import {useLocation} from "react-router-dom";
 import {useNavigateSearch} from "../../../services/hooks/useNavigateSearch";
 import s from "./Pagintaion.module.scss";
 import cn from "classnames";
+import {useLocationParams} from "../../../services/hooks/useLocationParams";
 
 
 
 export const Pagination:FC = ({page, pages}) => {
+    const search = useLocationParams('search');
     const {pathname} = useLocation();
     const pageInt    = parseInt(page);
     const pagesInt   = parseInt(pages);
@@ -16,8 +18,8 @@ export const Pagination:FC = ({page, pages}) => {
     const nextPage = pageInt < pagesInt ? pageInt + 1 : null;
 
 
-    const onPrevHandler = () => navigate(pathname,{page: prevPage});
-    const onNextHandler = () => navigate(pathname,{page: nextPage});
+    const onPrevHandler = () => navigate(pathname,{page: prevPage, search});
+    const onNextHandler = () => navigate(pathname,{page: nextPage, search});
 
     return (
         <div className={s.pagination}>

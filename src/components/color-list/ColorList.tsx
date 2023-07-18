@@ -3,7 +3,7 @@ import {useSelector} from "react-redux";
 import cn               from 'classnames';
 import s from './ColorList.module.scss'
 
-export const ColorList: FC = ({colors, activeColor, onChange}) => {
+export const ColorList: FC = ({colors, activeColor, onChange = (id) => void(0)}) => {
     const {colorList: _colorList} = useSelector(state => state.colors);
     const colorList = colors ? _colorList.filter(color => colors.includes(color.id)) : [];
 

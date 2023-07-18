@@ -3,13 +3,13 @@ import {createSlice} from "@reduxjs/toolkit";
 const searchSlice = createSlice ({
     name: 'search',
     initialState : {
-        opened: false
+        showPanel: false
     },
     reducers: {
-        setOpenState: (state, {payload}) => {
+        setShowSearch: (state, {payload}) => {
             state.opened = payload;
         },
-        toogleSearchVisible: (state, action) => {
+        toggleSearchVisible: (state, action) => {
             state.opened = !state.opened;
         },
 
@@ -17,6 +17,6 @@ const searchSlice = createSlice ({
 
 });
 
-export const {toogleSearchVisible, setOpenState} = searchSlice.actions;
+export const {toggleSearchVisible, setShowSearch} = searchSlice.actions;
 
 export default searchSlice.reducer;
