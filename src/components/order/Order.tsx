@@ -27,7 +27,7 @@ export const Order:FC = () => {
                 <Formik
                     initialValues={
                         {
-                            fio: 'Mass',
+                            fio: '',
                             address: '',
                             phone: '',
                             email: '',
@@ -98,7 +98,7 @@ export const Order:FC = () => {
                             <label className={s.radio}>
                                 <Field className={s.radioInput}
                                        type='radio'
-                                       name={'self'}
+                                       name={'delivery'}
                                        value={'self'}
                                 />
                                 <span> Самовывоз </span>
