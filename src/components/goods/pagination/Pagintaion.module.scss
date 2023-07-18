@@ -22,7 +22,7 @@
   width: 16px;
   font-size: 14px;
   line-height: 17px;
-  color: #8a8a8a;
+  color: #000;
   cursor: pointer;
   text-align: center;
 
@@ -37,7 +37,7 @@
     content: "";
     position: absolute;
     display: block;
-    height: 1px;
+    height: 2px;
     left: 0;
     right: 0;
     bottom: -6px;
@@ -51,7 +51,7 @@
   }
 
   &Active {
-    color: #000;
+    color:  #8a8a8a;
     text-align: center;
 
     &:after {

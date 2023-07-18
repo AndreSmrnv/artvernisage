@@ -12,7 +12,7 @@ export const fetchGoods = createAsyncThunk(
         const response = await fetch(url);
         const data = await response.json();
 
-        console.debug("goods/fetchGoods", {data})
+        //console.debug("goods/fetchGoods", {data})
 
         return data;
     }

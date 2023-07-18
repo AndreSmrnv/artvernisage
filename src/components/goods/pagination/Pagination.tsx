@@ -17,9 +17,10 @@ export const Pagination:FC = ({page, pages}) => {
     const prevPage = pageInt > 1 ? pageInt - 1 : null;
     const nextPage = pageInt < pagesInt ? pageInt + 1 : null;
 
+    const getNavParams = (page) => !!search ? { page, search} : {page};
 
-    const onPrevHandler = () => navigate(pathname,{page: prevPage, search});
-    const onNextHandler = () => navigate(pathname,{page: nextPage, search});
+    const onPrevHandler = () => navigate(pathname, getNavParams(prevPage) );
+    const onNextHandler = () => navigate(pathname, getNavParams(nextPage) );
 
     return (
         <div className={s.pagination}>
