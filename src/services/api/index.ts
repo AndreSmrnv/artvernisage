@@ -15,10 +15,15 @@ const getProductPath = (productId) =>
     `/product/${productId}`
 ;
 
+const getSearchPath = () =>
+    `/search`
+;
+
 export {
     getPicPath,
     getCategoryPath,
     getProductPath,
+    getSearchPath,
 }
 
 /**

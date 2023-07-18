@@ -7,7 +7,6 @@ export const getGoodById = (id, goods = []) =>  goods.find(good => good.id === i
 
 export const CartList:FC = () => {
     const { cartItems }   = useSelector(state => state.cart);
-    const { goodList }    = useSelector(state => state.goods);
 
 
     return (

@@ -1,15 +1,21 @@
+import cn from 'classnames';
+import {NavLink} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {toggleSearchVisible} from "../../../services/actions/searchSlice";
 import {Logo} from "./Logo";
 import {HandbagSimpleIcon, HeartIcon, MagnifyingGlassIcon} from "../../icons";
 import {Container} from "../../layout";
 import s from './Top.module.scss';
-import cn from 'classnames';
-import {NavLink} from "react-router-dom";
-import {useSelector} from "react-redux";
+
+
 
 
 
 export const Top = () => {
+    const dispatch = useDispatch();
     const {countItems} = useSelector(state => state.cart);
+    const {count: countFavorites} = useSelector(state => state.favorite);
+    const toggleSearchHandler = () => dispatch(toggleSearchVisible())
 
     return (
         <div className={s.top}>
@@ -23,7 +29,7 @@ export const Top = () => {
                 <div className={s.topNavigation}>
                     <ul className={s.topNavList}>
                         <li className={s.topNavItem}>
-                            <button className={s.topLink}>
+                            <button className={s.topLink} onClick={toggleSearchHandler}>
                                 <MagnifyingGlassIcon/>
                             </button>
                         </li>
@@ -31,15 +37,19 @@ export const Top = () => {
                         <li className={s.topNavList}>
                             <NavLink to={'/cart'} className={s.topLink}>
                                 <HandbagSimpleIcon/>
+                                {!!countItems &&
+                                    <span className={s.topLinkCount}>{countItems}</span>
+                                }
                             </NavLink>
-                            {!!countItems &&
-                                <span className={s.topLinkCount}>{countItems}</span>
-                            }
+
                         </li>
 
                         <li className={s.topNavList}>
                             <NavLink to={'/favorite'} className={cn(s.topLink, s.like)}>
                                 <HeartIcon/>
+                                {!!countFavorites &&
+                                    <span className={s.topLinkCount}>{countFavorites}</span>
+                                }
                             </NavLink>
                         </li>
                     </ul>
@@ -47,4 +57,4 @@ export const Top = () => {
             </Container>
         </div>
     )
-}
+};

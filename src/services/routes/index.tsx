@@ -5,6 +5,7 @@ import {ErrorPage}      from "../../pages/error";
 import {ProductPage}    from "../../pages/product";
 import {CartPage}       from "../../pages/cart";
 import {FavoritePage}   from "../../pages/favorite";
+import {SearchPage}     from "../../pages/search";
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -12,6 +13,7 @@ export const router = createBrowserRouter(
             <Route index element={<MainPage/>}/>
             <Route path='/cart' element={<CartPage />}/>
             <Route path='/favorite' element={<FavoritePage />}/>
+            <Route path='/search' element={<SearchPage />}/>
             <Route path='/product/:productId' element={<ProductPage />}/>
             <Route path='/catalog/:groupId/' element={<MainPage />}/>
             <Route path='/catalog/:groupId/:categoryId' element={<MainPage />}/>
