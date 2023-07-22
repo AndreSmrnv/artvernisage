@@ -1,15 +1,23 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 const failStatuses = ['rejected'];
 
+export interface ServerState {
+    state:    boolean;
+    requestStatus: string | null;
+}
+
+const initialState: ServerState = {
+    state: false,
+    requestStatus: null,
+};
+
 const serverSlice = createSlice ({
     name: 'server',
-    initialState : {
-        state: false,
-        requestStatus: null,
-    },
+    initialState,
     reducers: {
-        setServerState: (state, {payload: requestStatus}) => {
+        setServerState: (state, action: PayloadAction<string>) => {
+            const {payload: requestStatus} = action;
             state.state = !failStatuses.includes(requestStatus);
             state.requestStatus = requestStatus;
         },

@@ -1,9 +1,24 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import {GOODS_URL} from "../api";
 
+export interface GoodsState {
+    status:       'idle' | 'loading' | 'success' | 'failed';
+    goodList:     API.Goods;
+    error:        string | null;
+}
 
+const initialState: GoodsState = {
+    status: 'idle',
+    goodList: {
+        goods: [],
+        page: 0,
+        pages: 0,
+        totalCount: null,
+    },
+    error: null,
+};
 
-export const fetchGoods = createAsyncThunk(
+export const fetchGoods:(unknown)=>void = createAsyncThunk(
     "goods/fetchGoods",
     async (searchParams) => {
         const url = new URL(GOODS_URL);
@@ -20,16 +35,7 @@ export const fetchGoods = createAsyncThunk(
 
 const goodsSlice = createSlice ({
     name: 'goods',
-    initialState : {
-        status: 'idle',
-        goodList: {
-            goods: [],
-            page: 0,
-            pages: 0,
-            totalCount: null,
-        },
-        error: null,
-    },
+    initialState ,
     reducers: {
         setCurrentPage: (state, {payload}) => {
             state.goodList.page = payload;

@@ -1,28 +1,39 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {CATEGORIES_URL} from "../api";
 
+export interface NavigationState {
+    activeGroup:    string;
+    status:         'idle' | 'loading' | 'success' | 'failed';
+    categories:     API.Categories;
+    groupList:      Array<string>;
+    error:          string | null;
+}
+
+const initialState: NavigationState = {
+    activeGroup: 'women',
+    status: 'idle',
+    categories: {},
+    groupList: [],
+    error: null,
+};
 
 
-export const fetchNavigation = createAsyncThunk(
+export const fetchNavigation = createAsyncThunk<API.CategoriesResponse>(
     "navigation/fetchNavigation",
     async () => {
-        const response = await fetch(CATEGORIES_URL);
-        const data = await response.json();
+        const url = new URL(CATEGORIES_URL);
+        const response = await fetch(url);
+        const data: API.CategoriesResponse = await response.json();
         return data;
     }
 )
 
 const navigationSlice = createSlice ({
     name: 'navigation',
-    initialState : {
-        activeGroup: 'women',
-        status: 'idle',
-        categories: {},
-        groupList: [],
-        error: null,
-    },
+    initialState ,
     reducers: {
-        setActiveGroup: (state, {payload}) => {
+        setActiveGroup: (state, action: PayloadAction<string>) => {
+            const { payload } = action;
             state.activeGroup = payload;
         }
     },

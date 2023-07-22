@@ -1,6 +1,8 @@
-import {FC, useEffect, useState} from "react";
-import {useDispatch, useSelector}   from "react-redux";
+import {FC, FormEvent, useEffect, useState} from "react";
 import cn                           from 'classnames';
+import {addIdCart} from "../../../services/actions/cartSlice";
+import {useAppDispatch, useAppSelector} from "../../../services/hooks";
+import {ProductState} from "../../../services/actions/productSlice";
 import {Container}                  from "../../layout/container";
 import {getPicPath}                 from "../../../services/api";
 import {ColorList}                  from "../../color-list";
@@ -8,13 +10,13 @@ import {Count}                      from "../../count";
 import {SizeList}                   from "../../size-list";
 import {FavoriteButton}             from "../btn-favorite/FavoriteButton";
 import s                            from './Card.module.scss';
-import {addIdCart} from "../../../services/actions/cartSlice";
+
 
 
 
 
 export const Card:FC = () => {
-    const { status, product } = useSelector(state => state.product);
+    const { product } = useAppSelector(state => state.product) as ProductState;
     const {
         id,
         pic,
@@ -22,14 +24,14 @@ export const Card:FC = () => {
         price,
         description,
     } = product;
-    const dispatch = useDispatch();
-    const [activeColor, setActiveColor] = useState(null);
-    const [activeSize, setActiveSize] = useState(null);
+    const dispatch = useAppDispatch();
+    const [activeColor, setActiveColor] = useState(0);
+    const [activeSize, setActiveSize] = useState('');
     const [count, setCount] = useState(1);
     const resetValues = () => {
         setCount(1);
-        setActiveSize(null);
-        setActiveColor(null);
+        setActiveSize('');
+        setActiveColor(0);
     };
 
     useEffect(
@@ -38,7 +40,7 @@ export const Card:FC = () => {
     )
 
 
-    const formSubmitHandler = (e) => {
+    const formSubmitHandler = (e:FormEvent) => {
         e.preventDefault();
         dispatch(addIdCart({id, count}));
     }

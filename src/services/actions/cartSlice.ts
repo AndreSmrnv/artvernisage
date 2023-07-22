@@ -2,12 +2,24 @@ import {createSlice} from "@reduxjs/toolkit";
 
 const getItemIdx = (id, items) => items?.findIndex(item => item.id === id);
 
+type TCartItem = {
+    id: string
+    count: number;
+}
+
+export interface CartState {
+    cartItems: Array<TCartItem>
+    countItems: number;
+}
+
+const initialState: CartState = {
+    cartItems: [],
+    countItems: 0,
+};
+
 const cartSlice = createSlice ({
     name: 'cart',
-    initialState : {
-        cartItems: [],
-        countItems: 0,
-    },
+    initialState ,
     reducers: {
         addIdCart: (state, {payload: {id,count}}) => {
             const itemIdx = getItemIdx(id, state.cartItems);
@@ -22,7 +34,6 @@ const cartSlice = createSlice ({
             if (itemIdx !== -1) {
                 state.cartItems[itemIdx].count = count
             }
-            state.countItems = state.cartItems?.length ?? 0;
         },
         rmIdCart: (state, {payload: id}) => {
             const itemIdx = getItemIdx(id, state.cartItems);

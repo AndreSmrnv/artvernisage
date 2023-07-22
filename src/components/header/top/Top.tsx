@@ -1,6 +1,6 @@
 import cn from 'classnames';
 import {NavLink} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
+import {useAppDispatch, useAppSelector} from "../../../services/hooks";
 import {toggleSearchVisible} from "../../../services/actions/searchSlice";
 import {Logo} from "./Logo";
 import {HandbagSimpleIcon, HeartIcon, MagnifyingGlassIcon} from "../../icons";
@@ -11,10 +11,11 @@ import s from './Top.module.scss';
 
 
 
+
 export const Top = () => {
-    const dispatch = useDispatch();
-    const {countItems} = useSelector(state => state.cart);
-    const {count: countFavorites} = useSelector(state => state.favorite);
+    const dispatch = useAppDispatch();
+    const {countItems} = useAppSelector(state => state.cart);
+    const {count: countFavorites} = useAppSelector(state => state.favorite);
     const toggleSearchHandler = () => dispatch(toggleSearchVisible())
 
     return (

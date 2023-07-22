@@ -9,7 +9,7 @@ const searchSlice = createSlice ({
         setShowSearch: (state, {payload}) => {
             state.opened = payload;
         },
-        toggleSearchVisible: (state, action) => {
+        toggleSearchVisible: (state) => {
             state.opened = !state.opened;
         },
 

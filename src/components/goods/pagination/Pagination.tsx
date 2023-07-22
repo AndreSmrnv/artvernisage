@@ -5,19 +5,22 @@ import s from "./Pagintaion.module.scss";
 import cn from "classnames";
 import {useLocationParams} from "../../../services/hooks/useLocationParams";
 
+interface IPaginationProps {
+    page: number | string;
+    pages: number| string;
+}
 
-
-export const Pagination:FC = ({page, pages}) => {
+export const Pagination: FC<IPaginationProps> = ({page, pages}) => {
     const search = useLocationParams('search');
     const {pathname} = useLocation();
-    const pageInt    = parseInt(page);
-    const pagesInt   = parseInt(pages);
+    const pageInt    = typeof page === 'string' ?  parseInt(page): page;
+    const pagesInt   = typeof pages === 'string' ?  parseInt(pages) : pages;
     const navigate   = useNavigateSearch();
 
     const prevPage = pageInt > 1 ? pageInt - 1 : null;
     const nextPage = pageInt < pagesInt ? pageInt + 1 : null;
 
-    const getNavParams = (page) => !!search ? { page, search} : {page};
+    const getNavParams = (page: number | null) => !!search ? { page, search} : {page};
 
     const onPrevHandler = () => navigate(pathname, getNavParams(prevPage) );
     const onNextHandler = () => navigate(pathname, getNavParams(nextPage) );
@@ -38,7 +41,7 @@ export const Pagination:FC = ({page, pages}) => {
                     </li>
                 }
 
-                <li className={cn(s.link, s.linkActive)} disabled>
+                <li className={cn(s.link, s.linkActive)}>
                     {page}
                 </li>
 

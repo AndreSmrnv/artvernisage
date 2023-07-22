@@ -1,6 +1,18 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import {GOODS_URL} from "../api";
 
+export interface ProductState {
+    status:       'idle' | 'loading' | 'success' | 'failed';
+    product:     API.Good ;
+    error:        string | null;
+}
+
+const initialState = {
+    status: 'idle',
+    product: {},
+    error: null,
+} as  ProductState;
+
 export const fetchProduct = createAsyncThunk(
     "product/fetchProduct",
     async (id) => {
@@ -14,11 +26,7 @@ export const fetchProduct = createAsyncThunk(
 
 const productSlice = createSlice ({
     name: 'product',
-    initialState : {
-        status: 'idle',
-        product: {},
-        error: null,
-    },
+    initialState ,
     extraReducers: (builder) => {
         builder
             .addCase(fetchProduct.pending, (state) => {

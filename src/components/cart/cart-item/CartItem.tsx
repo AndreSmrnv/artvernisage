@@ -1,19 +1,30 @@
-import {FC, useState}               from "react";
-import {useDispatch, useSelector}   from "react-redux";
-import cn                           from "classnames";
-import {rmIdCart}                   from "../../../services/actions/cartSlice";
-import {getGoodById}                from "../cart-list/CartList";
-import {getPicPath}                 from "../../../services/api";
-import {Count}                      from "../../count";
-import s from "./CartItem.module.scss";
+import {CSSProperties, FC}              from "react";
+import cn                               from "classnames";
+import {useAppDispatch, useAppSelector} from "../../../services/hooks";
+import {rmIdCart}                       from "../../../services/actions/cartSlice";
+import {random}                         from "../../../services";
+import {getColorById}                   from "../../color-list/ColorList";
+import {getGoodById}                    from "../cart-list/CartList";
+import {getPicPath}                     from "../../../services/api";
+import {Count}                          from "../../count";
+import s                                from "./CartItem.module.scss";
 
 
 
-export const CartItem:FC = ({id, count}) => {
-    const dispatch = useDispatch();
-    const { goodList: {goods} }    = useSelector(state => state.goods);
-    const {pic, title, price , code = 'black', size = 'L'} = getGoodById(id, goods);
+interface ICartItemProps {
+    id: string;
+    count: number;
+}
 
+export const CartItem:FC<ICartItemProps> = ({id, count}) => {
+    const dispatch = useAppDispatch();
+    const { goodList: {goods} }    = useAppSelector(state => state.goods);
+    const { colorList }    = useAppSelector(state => state.colors);
+    const good = getGoodById(id, goods);
+    const {pic, title, price, colors, size: sizes} = good as API.Good;
+
+    const code = colors && colorList ? getColorById(colors[random(colors)],colorList)?.code : 'black';
+    const size = sizes ? sizes[random(sizes)] : '';
 
     const rmGoodHandler = () =>  dispatch(rmIdCart(id));
 
@@ -34,13 +45,13 @@ export const CartItem:FC = ({id, count}) => {
                 <div className={s.color}>
                     <p className={cn(s.subtitle, s.colorTitle)}> Цвет </p>
                     <div className={s.colorItem}
-                         style={{'--data-color': code}}
+                         style={{'--data-color': code} as CSSProperties}
                     />
                 </div>
                 <div className={s.size}>
                     <p className={cn(s.subtitle, s.sizeTitle)}> Размер </p>
                     <div className={s.sizeItem}>
-                        {size[0]}
+                        {size}
                     </div>
                 </div>
             </div>

@@ -1,7 +1,11 @@
 import {FC} from "react";
 import {Container} from "../layout/container";
 
-export const InfoMsg:FC = ({message = ''}) => (
+interface IInfoMsgProps{
+    message: string
+}
+
+export const InfoMsg:FC<IInfoMsgProps> = ({message = ''}) => (
     <Container>
         <p> {message} </p>
     </Container>

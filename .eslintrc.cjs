@@ -12,6 +12,20 @@ const tsRules = {
   '@typescript-eslint/restrict-template-expressions': 'off',
   '@typescript-eslint/no-unsafe-argument': 'off',
   '@typescript-eslint/await-thenable': 'off',
+  '@typescript-eslint/no-unused-vars': 'off',
+  '@typescript-eslint/no-namespace': 'off',
+  '@typescript-eslint/no-floating-promises': 'off',
+  "no-restricted-imports": "off",
+  "@typescript-eslint/no-restricted-imports": [
+    "warn",
+    {
+      "name": "react-redux",
+      "importNames": ["useSelector", "useDispatch"],
+      "message": "Use typed hooks `useAppDispatch` and `useAppSelector` instead."
+    }
+  ],
+  '@typescript-eslint/no-unsafe-call': 'off',
+  '@typescript-eslint/no-unsafe-return': 'off',
 };
 const reactRules = {
   'react/prop-types': 'off',

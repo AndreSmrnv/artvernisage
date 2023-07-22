@@ -1,4 +1,4 @@
-import {FC, useState} from "react";
+import {ChangeEvent, FC, FormEvent, useState} from "react";
 import s                         from './Search.module.scss';
 import {Container} from "../layout/container";
 import {useNavigateSearch} from "../../services/hooks/useNavigateSearch";
@@ -7,16 +7,16 @@ import {useLocationParams} from "../../services/hooks/useLocationParams";
 
 
 export const Search:FC = () => {
-    const searchParam = useLocationParams('search');
+    const searchParam = useLocationParams('search') ?? '';
     const [search, setSearch] = useState(searchParam);
     const navigate   = useNavigateSearch();
 
-    const searchSubmitHandler = (e) => {
+    const searchSubmitHandler = (e: FormEvent) => {
         e.preventDefault();
         navigate(getSearchPath(),{search});
     };
 
-    const searchChangeHandler = (e) => e && setSearch(e.target.value);
+    const searchChangeHandler = (e: ChangeEvent<HTMLInputElement>) => e && setSearch(e.target.value);
 
     return (
         <div className={s.search}>

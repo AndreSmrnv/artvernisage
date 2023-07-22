@@ -1,13 +1,18 @@
-import {FC} from "react";
-import { useSelector} from "react-redux";
-import {Container} from "../layout/container";
-import {Product} from "../product";
-import s from "./Goods.module.scss";
-import {Pagination} from "./pagination";
+import {FC}             from "react";
+import {useAppSelector} from "../../services/hooks";
+import {Container}      from "../layout/container";
+import {Product}        from "../product";
+import {Pagination}     from "./pagination";
+import s                from "./Goods.module.scss";
+import {GoodsState} from "../../services/actions/goodsSlice";
 
 
-export const Goods:FC = ({title = 'Новинки'}) => {
-    const {goodList} = useSelector(state => state.goods);
+interface IGoodsProps {
+    title?: string;
+}
+
+export const Goods: FC<IGoodsProps> = ({title = 'Новинки'}) => {
+    const {goodList} = useAppSelector(state => state.goods) as GoodsState;
     return (
         <section className={s.goods}>
             <Container>
