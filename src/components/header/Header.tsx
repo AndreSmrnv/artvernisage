@@ -10,13 +10,13 @@ import {useLocationParams} from "../../services/hooks/useLocationParams";
 
 
 export const Header:FC = () => {
-    const {opened} = useAppSelector(state => state.search);
+    const {showPanel} = useAppSelector(state => state.search);
     const search = useLocationParams('search') ?? '';
 
     return (
             <Container className={s.container}>
                 <Top />
-                { (opened || search?.length > 0) && <Search />}
+                { (showPanel || search?.length > 0) && <Search />}
                 <Navigation />
             </Container>
     )

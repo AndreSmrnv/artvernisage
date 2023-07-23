@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-const getItemIdx = (id, items) => items?.findIndex(item => item.id === id);
+const getItemIdx = (id: string, items: Array<TCartItem>) => items?.findIndex(item => item.id === id);
 
 type TCartItem = {
     id: string
@@ -40,7 +40,7 @@ const cartSlice = createSlice ({
             itemIdx !== -1 && state.cartItems.splice(itemIdx, 1);
             state.countItems = state.cartItems?.length ?? 0;
         },
-        resetCart: (state, action) => {
+        resetCart: (state) => {
             state.cartItems.splice(0,state.cartItems.length);
             state.countItems = 0;
         },

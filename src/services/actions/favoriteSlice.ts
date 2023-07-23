@@ -1,7 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 
 export interface FavoriteState {
-    goods: Array<number>;
+    goods: Array<string>;
     count: number;
 }
 
@@ -23,7 +23,7 @@ const favoriteSlice = createSlice ({
             index !== -1 && state.goods.splice(index, 1);
             state.count = state.goods?.length;
         },
-        resetFavorite: (state, action) => {
+        resetFavorite: (state) => {
             state.goods.splice(0,state.goods.length);
             state.count = state.goods?.length;
         },

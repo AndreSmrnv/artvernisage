@@ -1,5 +1,4 @@
-import {configureStore, getDefaultMiddleware} from '@reduxjs/toolkit';
-import { Middleware } from 'redux'
+import {configureStore} from '@reduxjs/toolkit';
 import { rootReducer } from '../reducers';
 import {loadReduxState, saveReduxState} from "./fetchState";
 import {setServerState} from "../actions/serverSlice";
@@ -7,7 +6,7 @@ import {setServerState} from "../actions/serverSlice";
 const devTools  = import.meta.env.DEV;
 const KEY       = ['favorite', 'cart'];
 
-const statusServerMiddleware: Middleware<NonNullable<unknown>, RootState> = (store) => (next) => (action) => {
+const statusServerMiddleware = (store) => (next) => (action) => {
     const {requestStatus} = action?.meta ?? {};
     requestStatus && store.dispatch(setServerState(requestStatus))
     //console.debug('statusServerMiddleware',{requestStatus, action})

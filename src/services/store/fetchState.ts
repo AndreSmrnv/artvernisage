@@ -1,5 +1,9 @@
-const  loadReduxState = (keys = []) => {
-    const localState = {};
+type TStore = {
+    [k: string]:  any
+};
+
+const  loadReduxState = (keys: Array<string> = []) => {
+    const localState = {} as TStore;
     keys.forEach(
             key => {
                 try {
@@ -16,7 +20,7 @@ const  loadReduxState = (keys = []) => {
     return localState
 };
 
-const saveReduxState = (store, keys = []) =>
+const saveReduxState = (store: TStore, keys: Array<string> = []) =>
     keys.forEach(
         key => localStorage.setItem(`redux_${key}`, JSON.stringify(store[key]))
     )

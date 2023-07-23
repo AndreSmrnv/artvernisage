@@ -7,11 +7,11 @@ const getPicPath = (pic: string) =>
     pic ? `${API_URL}/${pic}` : '#'
 ;
 
-const getCategoryPath = (groupId, categoryId = '') =>
+const getCategoryPath = (groupId: string, categoryId = '') =>
     `/catalog/${groupId}/${categoryId}`
 ;
 
-const getProductPath = (productId) =>
+const getProductPath = (productId: string) =>
     `/product/${productId}`
 ;
 

@@ -25,7 +25,7 @@ export const fetchColors = createAsyncThunk(
 const colorsSlice = createSlice ({
     name: 'colors',
     initialState ,
-
+    reducers: {},
     extraReducers: (builder) => {
         builder
             .addCase(fetchColors.pending, (state) => {
@@ -37,7 +37,7 @@ const colorsSlice = createSlice ({
             })
             .addCase(fetchColors.rejected, (state, action) => {
                 state.status = 'failed';
-                state.error = action.error.message;
+                state.error = action.error?.message ?? null;
             })
     }
 });

@@ -18,7 +18,7 @@ export const Goods: FC<IGoodsProps> = ({title = 'Новинки'}) => {
             <Container>
                 <h2 className={s.title}>
                     {title}
-                    {goodList?.totalCount &&
+                    {goodList?.totalCount && goodList?.pages > 1 &&
                         <sup> &nbsp;({goodList.totalCount})</sup>
                     }
                 </h2>

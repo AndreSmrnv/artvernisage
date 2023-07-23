@@ -13,19 +13,19 @@ const initialState: GoodsState = {
         goods: [],
         page: 0,
         pages: 0,
-        totalCount: null,
+        totalCount: 0,
     },
     error: null,
 };
 
-export const fetchGoods:(unknown)=>void = createAsyncThunk(
+export const fetchGoods = createAsyncThunk(
     "goods/fetchGoods",
-    async (searchParams) => {
+    async (searchParams: API.SearchParams) => {
         const url = new URL(GOODS_URL);
         Object.entries(searchParams).forEach( param => param[1] && url.searchParams.append(...param) );
 
         const response = await fetch(url);
-        const data = await response.json();
+        const data: API.GoodsResponse = await response.json();
 
         //console.debug("goods/fetchGoods", {data})
 
@@ -52,7 +52,7 @@ const goodsSlice = createSlice ({
             })
             .addCase(fetchGoods.rejected, (state, action) => {
                 state.status = 'failed';
-                state.error = action.error.message;
+                state.error = action.error?.message ?? null;
             })
     }
 });

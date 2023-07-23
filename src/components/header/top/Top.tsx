@@ -36,6 +36,15 @@ export const Top = () => {
                         </li>
 
                         <li className={s.topNavList}>
+                            <NavLink to={'/favorite'} className={cn(s.topLink, s.like)}>
+                                <HeartIcon/>
+                                {!!countFavorites &&
+                                    <span className={s.topLinkCount}>{countFavorites}</span>
+                                }
+                            </NavLink>
+                        </li>
+
+                        <li className={s.topNavList}>
                             <NavLink to={'/cart'} className={s.topLink}>
                                 <HandbagSimpleIcon/>
                                 {!!countItems &&
@@ -43,15 +52,6 @@ export const Top = () => {
                                 }
                             </NavLink>
 
-                        </li>
-
-                        <li className={s.topNavList}>
-                            <NavLink to={'/favorite'} className={cn(s.topLink, s.like)}>
-                                <HeartIcon/>
-                                {!!countFavorites &&
-                                    <span className={s.topLinkCount}>{countFavorites}</span>
-                                }
-                            </NavLink>
                         </li>
                     </ul>
                 </div>

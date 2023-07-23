@@ -1,22 +1,21 @@
-import {FC, useEffect, useState}    from "react";
-import {useDispatch, useSelector}   from "react-redux";
-import {useLocationParams}          from "../../services/hooks/useLocationParams";
-import {fetchGoods}                 from "../../services/actions/goodsSlice";
-import {Goods}                      from "../../components/goods";
-import {InfoMsg}                    from "../../components/info-msg";
-import s                         from './SearchPage.module.scss';
+import {FC, useEffect}                  from "react";
+import {useAppDispatch, useAppSelector} from "../../services/hooks";
+import {useLocationParams}              from "../../services/hooks/useLocationParams";
+import {fetchGoods}                     from "../../services/actions/goodsSlice";
+import {Goods}                          from "../../components/goods";
+import {InfoMsg}                        from "../../components/info-msg";
+
 
 export const SearchPage:FC = () => {
     const search    = useLocationParams('search');
     const page      = useLocationParams('page');
 
-    const dispatch = useDispatch();
-    const {totalCount} = useSelector(state => state.goods.goodList);
-
+    const dispatch = useAppDispatch();
+    const {totalCount} = useAppSelector(state => state.goods.goodList);
 
     useEffect(
         () => {
-            dispatch( fetchGoods( {search, page} ) );
+            dispatch( fetchGoods({search, page}) );
         },
         [search, page]
     );
@@ -29,4 +28,4 @@ export const SearchPage:FC = () => {
             }
         </>
     )
-}
+};

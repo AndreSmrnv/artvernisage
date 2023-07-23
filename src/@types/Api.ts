@@ -59,6 +59,8 @@ namespace API {
         size: SizeList;
     }
 
+    export type ProductResponse = Good;
+
     export type SizeList = Array<string>;
 
     export type ColorsResponse = Colors;
@@ -71,7 +73,9 @@ namespace API {
         code: string;
     }
 
-
+    export type SearchParams = {
+        [k: string]:  any
+    }
 }
 
 /*

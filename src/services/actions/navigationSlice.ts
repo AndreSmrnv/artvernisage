@@ -49,7 +49,7 @@ const navigationSlice = createSlice ({
             })
             .addCase(fetchNavigation.rejected, (state, action) => {
                 state.status = 'failed';
-                state.error = action.error.message;
+                state.error = action.error?.message ?? null;
             })
     }
 });

@@ -11,7 +11,7 @@ export const CartPage:FC = () => {
     const { cartItems } = useAppSelector(state => state.cart) as CartState;
 
     useEffect(() => {
-            const list = cartItems?.map(item => item.id);
+            const list = cartItems?.map(item => item.id).join(',');
             dispatch( fetchGoods( {list} ) );
         },
         [cartItems]

@@ -22,10 +22,9 @@
   width: 16px;
   font-size: 14px;
   line-height: 17px;
-  color: #000;
+  color:  #8a8a8a;
   cursor: pointer;
   text-align: center;
-
 
   @media (max-width: 768px) {
     width: 10px;
@@ -51,7 +50,7 @@
   }
 
   &Active {
-    color:  #8a8a8a;
+    color: #000;
     text-align: center;
     cursor: default;
 
@@ -62,10 +61,10 @@
 }
 
 .arrow {
-  color: #000;
+  color:  #8a8a8a;
 
   &:disabled {
     pointer-events: none;
-    color: #8a8a8a;
+    opacity: 0.3;
   }
 }

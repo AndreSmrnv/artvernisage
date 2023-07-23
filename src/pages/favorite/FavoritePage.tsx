@@ -1,30 +1,32 @@
-import {FC, useEffect}              from "react";
-import {useDispatch, useSelector}   from "react-redux";
-import {Goods}                      from "../../components/goods";
-import {InfoMsg}                    from "../../components/info-msg";
-import {fetchGoods}                 from "../../services/actions/goodsSlice";
-import {resetFavorite}              from "../../services/actions/favoriteSlice";
-import {useLocationParams}          from "../../services/hooks/useLocationParams";
+import {FC, useEffect}                  from "react";
+import {fetchGoods}                     from "../../services/actions/goodsSlice";
+import {FavoriteState, resetFavorite}   from "../../services/actions/favoriteSlice";
+import {useLocationParams}              from "../../services/hooks/useLocationParams";
+import {useAppDispatch, useAppSelector} from "../../services/hooks";
+import {Goods}                          from "../../components/goods";
+import {InfoMsg}                        from "../../components/info-msg";
+
 
 
 export const FavoritePage:FC = () => {
-    const dispatch = useDispatch();
-    const { status, goods: list } = useSelector(state => state.favorite);
+    const dispatch = useAppDispatch();
+    const { goods } = useAppSelector(state => state.favorite) as FavoriteState;
     const page = useLocationParams('page');
 
     useEffect(() => {
+        const list = goods?.join(',') ?? '';
         dispatch( fetchGoods( {list, page} ) );
-        list.every( id => id === null ) && dispatch(  resetFavorite() );
+        goods.every( id => id === null ) && dispatch(  resetFavorite() );
 
-    }, [list, page]);
+    }, [goods, page]);
 
 
     
     return (
         <>
-            { list?.length > 0
+            { goods?.length > 0
                 ? <Goods title={'Вам понравилось'} />
-                : <InfoMsg message={'Кажется Вам ничего не понравилось ;)'}/>
+                : <InfoMsg message={'Кажется Вы ничего не подобрали себе ;)'}/>
             }
         </>
     )
