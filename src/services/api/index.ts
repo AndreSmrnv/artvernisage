@@ -1,4 +1,4 @@
-export const API_URL        = 'http://localhost:8024';
+export const API_URL        = 'https://yellow-full-stream.glitch.me';//'http://localhost:8024';
 export const GOODS_URL      = `${API_URL}/api/goods`;
 export const CATEGORIES_URL = `${API_URL}/api/categories`;
 export const COLORS_URL     = `${API_URL}/api/colors`;
@@ -7,11 +7,11 @@ const getPicPath = (pic: string) =>
     pic ? `${API_URL}/${pic}` : '#'
 ;
 
-const getCategoryPath = (groupId, categoryId = '') =>
+const getCategoryPath = (groupId: string, categoryId = '') =>
     `/catalog/${groupId}/${categoryId}`
 ;
 
-const getProductPath = (productId) =>
+const getProductPath = (productId: string) =>
     `/product/${productId}`
 ;
 

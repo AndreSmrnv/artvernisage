@@ -1,19 +1,20 @@
 import {FC}             from "react";
 import { NavLink }      from 'react-router-dom';
-import {useSelector}    from "react-redux";
 import cn               from 'classnames';
-import s                from "../Footer.module.scss";
+import {useSelector}    from "../../../services/hooks";
 import {getCategoryPath} from "../../../services/api";
+import s                from "../Footer.module.scss";
+import {NavigationState} from "../../../services/actions/navigationSlice";
 
 
 export const NavLinks: FC = () => {
-    const { groupList, categories } = useSelector(state => state.navigation);
+    const { groupList, categories } = useSelector(state => state.navigation) as NavigationState;
 
     return (
         <nav className={s.category}>
             <h2 className={cn(s.title, s.categoryTitle)}>Каталог</h2>
             <ul className={s.categoryList}>
-                {groupList.map((groupId) => (
+                {groupList?.map((groupId) => (
                     <li key={groupId} className={s.categoryItem}>
                         <h3 className={s.categorySubtitle}>
                             <NavLink to={getCategoryPath(groupId)} className={s.link}>

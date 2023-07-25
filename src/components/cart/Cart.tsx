@@ -1,8 +1,9 @@
-import {FC} from "react";
-import {Container} from "../layout/container";
-import {useSelector} from "react-redux";
-import {CartList} from "./cart-list";
-import s from "./Cart.module.scss";
+import {FC}             from "react";
+import {Container}      from "../layout/container";
+import {useSelector}    from "../../services/hooks";
+import {CartList}       from "./cart-list";
+import s                from "./Cart.module.scss";
+
 
 export const Cart:FC = () => {
     const { cartItems }   = useSelector(state => state.cart);

@@ -1,11 +1,18 @@
 import {createSlice} from "@reduxjs/toolkit";
 
+export interface FavoriteState {
+    goods: Array<string>;
+    count: number;
+}
+
+const initialState = {
+    goods: [],
+    count: 0
+} as  FavoriteState;
+
 const favoriteSlice = createSlice ({
     name: 'favorite',
-    initialState : {
-        goods: [],
-        count: 0
-    },
+    initialState,
     reducers: {
         addIdFavorite: (state, {payload: id}) => {
             !state.goods.includes(id) && state.goods.push(id);
@@ -16,7 +23,7 @@ const favoriteSlice = createSlice ({
             index !== -1 && state.goods.splice(index, 1);
             state.count = state.goods?.length;
         },
-        resetFavorite: (state, action) => {
+        resetFavorite: (state) => {
             state.goods.splice(0,state.goods.length);
             state.count = state.goods?.length;
         },

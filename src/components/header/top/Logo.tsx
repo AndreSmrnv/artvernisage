@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Logo: React.FC<{ className: string }> = ({className}) => (
+export const Logo: React.FC<{ className?: string }> = ({className}) => (
     <svg width="250" height="65" viewBox="0 0 250 65" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
         <rect x="0.5" y="0.5" width="249" height="64" stroke="black"/>
         <path d="M31.5935 19.8478L27.8884 19.3596V17.3255H39.6013V19.3596L35.8962 19.8478V45.1522L39.6013 45.5997V47.5525H27.9283V45.5591L31.5935 45.1522V19.8478Z" fill="black"/>

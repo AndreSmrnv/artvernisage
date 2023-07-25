@@ -1,11 +1,15 @@
-import {FC, useState} from "react";
+import {FC} from "react";
 import {NavLink}        from "react-router-dom";
 import {Container}      from "../layout/container";
 import {getPicPath, getProductPath} from "../../services/api";
 import s                from './Banner.module.scss'
 import {useWindowBreakpoint} from "../../services/subjects/";
 
-export const Banner:FC = ( {banner} ) => {
+interface IBannerProps {
+    banner: API.Banner
+}
+
+export const Banner:FC<IBannerProps> = ( {banner} ) => {
      const breakpoint = useWindowBreakpoint();
      const {description, bg , id} = banner ?? {};
      const backgroundImageUrl = bg ? {backgroundImage: `url(${getPicPath(bg?.[breakpoint])})`} : {};

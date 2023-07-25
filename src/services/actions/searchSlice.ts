@@ -7,10 +7,10 @@ const searchSlice = createSlice ({
     },
     reducers: {
         setShowSearch: (state, {payload}) => {
-            state.opened = payload;
+            state.showPanel = payload;
         },
-        toggleSearchVisible: (state, action) => {
-            state.opened = !state.opened;
+        toggleSearchVisible: (state) => {
+            state.showPanel = !state.showPanel;
         },
 
     },

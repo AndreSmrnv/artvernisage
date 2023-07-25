@@ -1,22 +1,29 @@
-import {FC} from "react";
-import * as Yup from 'yup';
-import {Container} from "../layout/container";
-import cn                        from 'classnames';
-import s                         from './Order.module.scss';
-import {Field, Form, Formik, ErrorMessage} from "formik";
-import {PatternFormat} from "react-number-format";
+import {FC}                                 from "react";
+import * as Yup                             from 'yup';
+import {Field, Form, Formik, ErrorMessage}  from "formik";
+import {PatternFormat}                      from "react-number-format";
+import {Container}                          from "../layout/container";
+import s                                    from './Order.module.scss';
+
+type TOrderData = {
+    fio:        string;
+    address:    string;
+    phone:      string;
+    email:      string;
+    delivery:   string;
+}
 
 export const Order:FC = () => {
 
-    const submitOrderHandler = (val) => console.debug('Order submit',{val});
+    const submitOrderHandler = (val: Partial<TOrderData>) => console.debug('Order submit',{val});
 
     const validationSchema = Yup.object(
         {
-            fio: Yup.string().required('Заполните имя'),
-            address: Yup.string().required('Заполните адрес'),
-            phone: Yup.string().required('Заполните контактный телефон'),
-            email: Yup.string().email('введена не валидная почта').required('Заполните имя'),
-            delivery: Yup.string().required('Выберите способ доставки'),
+            fio:        Yup.string().required('заполните имя'),
+            address:    Yup.string().required('заполните адрес'),
+            phone:      Yup.string().required('заполните контактный телефон'),
+            email:      Yup.string().email('введена не валидная почта').required('заполните имя'),
+            delivery:   Yup.string().required('выберите способ доставки'),
         }
     )
 
@@ -27,7 +34,7 @@ export const Order:FC = () => {
                 <Formik
                     initialValues={
                         {
-                            fio: 'Mass',
+                            fio: '',
                             address: '',
                             phone: '',
                             email: '',
@@ -47,7 +54,7 @@ export const Order:FC = () => {
                                 />
                                 <ErrorMessage className={s.error}
                                               name={'fio'}
-                                              componet={'span'}
+                                              component={'span'}
                                 />
                             </label>
                             <label className={s.label}>
@@ -58,7 +65,7 @@ export const Order:FC = () => {
                                 />
                                 <ErrorMessage className={s.error}
                                               name={'address'}
-                                              componet={'span'}
+                                              component={'span'}
                                 />
                             </label>
                             <label className={s.label}>
@@ -70,7 +77,7 @@ export const Order:FC = () => {
                                 />
                                 <ErrorMessage className={s.error}
                                               name={'phone'}
-                                              componet={'span'}
+                                              component={'span'}
                                 />
                             </label>
                             <label className={s.label}>
@@ -81,7 +88,7 @@ export const Order:FC = () => {
                                 />
                                 <ErrorMessage className={s.error}
                                               name={'email'}
-                                              componet={'span'}
+                                              component={'span'}
                                 />
                             </label>
                         </fieldset>
@@ -98,14 +105,14 @@ export const Order:FC = () => {
                             <label className={s.radio}>
                                 <Field className={s.radioInput}
                                        type='radio'
-                                       name={'self'}
+                                       name={'delivery'}
                                        value={'self'}
                                 />
                                 <span> Самовывоз </span>
                             </label>
                             <ErrorMessage className={s.error}
                                           name={'delivery'}
-                                          componet={'span'}
+                                          component={'span'}
                             />
                         </fieldset>
 

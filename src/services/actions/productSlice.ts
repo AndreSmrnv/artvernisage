@@ -1,24 +1,33 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import {GOODS_URL} from "../api";
 
-export const fetchProduct = createAsyncThunk(
+export interface ProductState {
+    status:       'idle' | 'loading' | 'success' | 'failed';
+    product:     API.Good ;
+    error:        string | null;
+}
+
+const initialState = {
+    status: 'idle',
+    product: {},
+    error: null,
+} as  ProductState;
+
+export const fetchProduct  = createAsyncThunk(
     "product/fetchProduct",
-    async (id) => {
+    async (id: string) => {
         const url = new URL(`${GOODS_URL}/${id}`);
 
         const response = await fetch(url);
-        const data = await response.json();
+        const data: API.ProductResponse = await response.json();
         return data;
     }
 )
 
 const productSlice = createSlice ({
     name: 'product',
-    initialState : {
-        status: 'idle',
-        product: {},
-        error: null,
-    },
+    initialState ,
+    reducers: {},
     extraReducers: (builder) => {
         builder
             .addCase(fetchProduct.pending, (state) => {
@@ -30,7 +39,7 @@ const productSlice = createSlice ({
             })
             .addCase(fetchProduct.rejected, (state, action) => {
                 state.status = 'failed';
-                state.error = action.error.message;
+                state.error = action.error?.message ?? null;
             })
     }
 });

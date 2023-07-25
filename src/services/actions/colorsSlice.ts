@@ -1,7 +1,17 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import {COLORS_URL} from "../api";
 
+export interface ColorsState {
+    status:         'idle' | 'loading' | 'success' | 'failed';
+    colorList: Array<API.Color>
+    error:          string | null;
+}
 
+const initialState: ColorsState = {
+    status: 'idle',
+    colorList: [],
+    error: null,
+};
 
 export const fetchColors = createAsyncThunk(
     "colors/fetchColors",
@@ -14,11 +24,8 @@ export const fetchColors = createAsyncThunk(
 
 const colorsSlice = createSlice ({
     name: 'colors',
-    initialState : {
-        status: 'idle',
-        colorList: [],
-        error: null,
-    },
+    initialState ,
+    reducers: {},
     extraReducers: (builder) => {
         builder
             .addCase(fetchColors.pending, (state) => {
@@ -30,7 +37,7 @@ const colorsSlice = createSlice ({
             })
             .addCase(fetchColors.rejected, (state, action) => {
                 state.status = 'failed';
-                state.error = action.error.message;
+                state.error = action.error?.message ?? null;
             })
     }
 });

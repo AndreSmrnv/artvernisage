@@ -1,18 +1,19 @@
 import {FC, useEffect}              from "react";
-import {useDispatch, useSelector}   from "react-redux";
 import { useParams }                from 'react-router-dom';
+import {fetchProduct, ProductState} from "../../services/actions/productSlice";
+import {fetchGoods}                 from "../../services/actions/goodsSlice";
+import {useDispatch, useSelector}   from "../../services/hooks";
 import {Card}                       from "../../components/product/card";
 import {Goods}                      from "../../components/goods";
-import {fetchProduct}               from "../../services/actions/productSlice";
-import {fetchGoods}                 from "../../services/actions/goodsSlice";
+
 
 export const ProductPage:FC = () => {
     const {productId} = useParams();
     const dispatch = useDispatch();
-    const { status, product } = useSelector(state => state.product);
+    const { product } = useSelector(state => state.product) as ProductState;
 
     useEffect(() => {
-        dispatch( fetchProduct( productId ) );
+        productId && dispatch( fetchProduct( productId ) );
     }, [productId]);
 
     useEffect(() => {

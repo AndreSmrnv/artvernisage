@@ -1,18 +1,33 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import {GOODS_URL} from "../api";
 
+export interface GoodsState {
+    status:       'idle' | 'loading' | 'success' | 'failed';
+    goodList:     API.Goods;
+    error:        string | null;
+}
 
+const initialState: GoodsState = {
+    status: 'idle',
+    goodList: {
+        goods: [],
+        page: 0,
+        pages: 0,
+        totalCount: 0,
+    },
+    error: null,
+};
 
 export const fetchGoods = createAsyncThunk(
     "goods/fetchGoods",
-    async (searchParams) => {
+    async (searchParams: API.SearchParams) => {
         const url = new URL(GOODS_URL);
         Object.entries(searchParams).forEach( param => param[1] && url.searchParams.append(...param) );
 
         const response = await fetch(url);
-        const data = await response.json();
+        const data: API.GoodsResponse = await response.json();
 
-        console.debug("goods/fetchGoods", {data})
+        //console.debug("goods/fetchGoods", {data})
 
         return data;
     }
@@ -20,16 +35,7 @@ export const fetchGoods = createAsyncThunk(
 
 const goodsSlice = createSlice ({
     name: 'goods',
-    initialState : {
-        status: 'idle',
-        goodList: {
-            goods: [],
-            page: 0,
-            pages: 0,
-            totalCount: null,
-        },
-        error: null,
-    },
+    initialState ,
     reducers: {
         setCurrentPage: (state, {payload}) => {
             state.goodList.page = payload;
@@ -46,7 +52,7 @@ const goodsSlice = createSlice ({
             })
             .addCase(fetchGoods.rejected, (state, action) => {
                 state.status = 'failed';
-                state.error = action.error.message;
+                state.error = action.error?.message ?? null;
             })
     }
 });

@@ -1,13 +1,15 @@
-import {FC}             from "react";
-import {useSelector}    from "react-redux";
-import {NavLink}        from 'react-router-dom';
-import cn               from 'classnames';
-import s                from "./Category.module.scss";
-import {getCategoryPath} from "../../../../services/api";
+import {FC}                 from "react";
+import {NavLink}            from 'react-router-dom';
+import cn                   from 'classnames';
+import {getCategoryPath}    from "../../../../services/api";
+import {NavigationState}    from "../../../../services/actions/navigationSlice";
+import {useSelector}        from "../../../../services/hooks";
+import s                    from "./Category.module.scss";
+
 
 
 export const Category: FC = () => {
-    const { status, activeGroup, groupList, categories } = useSelector(state => state.navigation);
+    const { status, activeGroup, groupList, categories } = useSelector(state => state.navigation) as NavigationState;
 
     return (
         <ul className={s.category}>

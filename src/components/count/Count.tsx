@@ -2,11 +2,16 @@ import {FC, useEffect, useState} from "react";
 import cn                        from 'classnames';
 import s                         from './Count.module.scss';
 
-export const Count:FC = (
+interface ICountProps {
+    value: number;
+    onChange?: (count: number) => void;
+    className?: string;
+}
+
+export const Count:FC<ICountProps> = (
     {
-        id,
         value = 0,
-        onChange = (count) => void(0) ,
+        onChange,
         className = ''
     }
 ) => {
@@ -17,7 +22,7 @@ export const Count:FC = (
         [value]
     );
     useEffect(
-        () => onChange(count),
+        () => onChange && onChange(count),
         [count]
     );
 
