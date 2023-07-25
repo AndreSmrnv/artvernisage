@@ -1,14 +1,14 @@
 import {FC}             from "react";
 import { NavLink }      from 'react-router-dom';
 import cn               from 'classnames';
-import {useAppSelector} from "../../../services/hooks";
+import {useSelector}    from "../../../services/hooks";
 import {getCategoryPath} from "../../../services/api";
 import s                from "../Footer.module.scss";
 import {NavigationState} from "../../../services/actions/navigationSlice";
 
 
 export const NavLinks: FC = () => {
-    const { groupList, categories } = useAppSelector(state => state.navigation) as NavigationState;
+    const { groupList, categories } = useSelector(state => state.navigation) as NavigationState;
 
     return (
         <nav className={s.category}>

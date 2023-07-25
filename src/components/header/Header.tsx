@@ -1,16 +1,14 @@
-import {FC}         from "react";
-import {useAppSelector} from "../../services/hooks";
-import {Container}  from "../layout";
-import {Top}        from "./top";
-import {Navigation} from "./navigation";
-import s            from './Header.module.scss';
-import {Search} from "../search";
-import {useLocationParams} from "../../services/hooks/useLocationParams";
-
-
+import {FC}                 from "react";
+import {useSelector}        from "../../services/hooks";
+import {Container}          from "../layout";
+import {Top}                from "./top";
+import {Navigation}         from "./navigation";
+import {Search}             from "../search";
+import {useLocationParams}  from "../../services/hooks/useLocationParams";
+import s                    from './Header.module.scss';
 
 export const Header:FC = () => {
-    const {showPanel} = useAppSelector(state => state.search);
+    const {showPanel} = useSelector(state => state.search);
     const search = useLocationParams('search') ?? '';
 
     return (

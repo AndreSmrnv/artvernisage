@@ -3,11 +3,11 @@ import {RouterProvider}     from 'react-router-dom';
 import {router}             from "../../services/routes";
 import {fetchNavigation}    from "../../services/actions/navigationSlice";
 import {fetchColors}        from "../../services/actions/colorsSlice";
-import {useAppDispatch} from "../../services/hooks";
+import {useDispatch}        from "../../services/hooks";
 
 
 export const App: FC = () => {
-    const dispatch = useAppDispatch();
+    const dispatch = useDispatch();
 
     useEffect(
         () => {

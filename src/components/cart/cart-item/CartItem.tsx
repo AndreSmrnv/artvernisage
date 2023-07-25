@@ -1,6 +1,6 @@
 import {CSSProperties, FC}              from "react";
 import cn                               from "classnames";
-import {useAppDispatch, useAppSelector} from "../../../services/hooks";
+import {useDispatch, useSelector}       from "../../../services/hooks";
 import {rmIdCart}                       from "../../../services/actions/cartSlice";
 import {random}                         from "../../../services";
 import {getColorById}                   from "../../color-list/ColorList";
@@ -10,16 +10,15 @@ import {Count}                          from "../../count";
 import s                                from "./CartItem.module.scss";
 
 
-
 interface ICartItemProps {
-    id: string;
-    count: number;
+    id:     string;
+    count:  number;
 }
 
 export const CartItem:FC<ICartItemProps> = ({id, count}) => {
-    const dispatch = useAppDispatch();
-    const { goodList: {goods} }    = useAppSelector(state => state.goods);
-    const { colorList }    = useAppSelector(state => state.colors);
+    const dispatch = useDispatch();
+    const { goodList: {goods} } = useSelector(state => state.goods);
+    const { colorList } = useSelector(state => state.colors);
     const good = getGoodById(id, goods);
     const {pic, title, price, colors, size: sizes} = good as API.Good;
 

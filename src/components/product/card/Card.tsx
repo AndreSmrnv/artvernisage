@@ -1,8 +1,8 @@
 import {FC, FormEvent, useEffect, useState} from "react";
 import cn                           from 'classnames';
-import {addIdCart} from "../../../services/actions/cartSlice";
-import {useAppDispatch, useAppSelector} from "../../../services/hooks";
-import {ProductState} from "../../../services/actions/productSlice";
+import {addIdCart}                  from "../../../services/actions/cartSlice";
+import {useDispatch, useSelector}   from "../../../services/hooks";
+import {ProductState}               from "../../../services/actions/productSlice";
 import {Container}                  from "../../layout/container";
 import {getPicPath}                 from "../../../services/api";
 import {ColorList}                  from "../../color-list";
@@ -16,7 +16,7 @@ import s                            from './Card.module.scss';
 
 
 export const Card:FC = () => {
-    const { product } = useAppSelector(state => state.product) as ProductState;
+    const { product } = useSelector(state => state.product) as ProductState;
     const {
         id,
         pic,
@@ -24,7 +24,7 @@ export const Card:FC = () => {
         price,
         description,
     } = product;
-    const dispatch = useAppDispatch();
+    const dispatch = useDispatch();
     const [activeColor, setActiveColor] = useState(0);
     const [activeSize, setActiveSize] = useState('');
     const [count, setCount] = useState(1);

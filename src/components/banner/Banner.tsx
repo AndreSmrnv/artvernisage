@@ -8,6 +8,7 @@ import {useWindowBreakpoint} from "../../services/subjects/";
 interface IBannerProps {
     banner: API.Banner
 }
+
 export const Banner:FC<IBannerProps> = ( {banner} ) => {
      const breakpoint = useWindowBreakpoint();
      const {description, bg , id} = banner ?? {};

@@ -1,5 +1,5 @@
 import {FC, useEffect}                  from "react";
-import {useAppDispatch, useAppSelector} from "../../services/hooks";
+import {useDispatch, useSelector} from "../../services/hooks";
 import {useLocationParams}              from "../../services/hooks/useLocationParams";
 import {fetchGoods}                     from "../../services/actions/goodsSlice";
 import {Goods}                          from "../../components/goods";
@@ -10,8 +10,8 @@ export const SearchPage:FC = () => {
     const search    = useLocationParams('search');
     const page      = useLocationParams('page');
 
-    const dispatch = useAppDispatch();
-    const {totalCount} = useAppSelector(state => state.goods.goodList);
+    const dispatch = useDispatch();
+    const {totalCount} = useSelector(state => state.goods.goodList);
 
     useEffect(
         () => {

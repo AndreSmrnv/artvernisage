@@ -1,17 +1,12 @@
 import {configureStore} from '@reduxjs/toolkit';
 import { rootReducer } from '../reducers';
 import {loadReduxState, saveReduxState} from "./fetchState";
-import {setServerState} from "../actions/serverSlice";
+import {statusServerMiddleware} from "../middleware/statusServer";
+
 
 const devTools  = import.meta.env.DEV;
 const KEY       = ['favorite', 'cart'];
 
-const statusServerMiddleware = (store) => (next) => (action) => {
-    const {requestStatus} = action?.meta ?? {};
-    requestStatus && store.dispatch(setServerState(requestStatus))
-    //console.debug('statusServerMiddleware',{requestStatus, action})
-    return next(action)
-};
 
 const store = configureStore(
     {
@@ -26,5 +21,6 @@ store.subscribe( ()=>saveReduxState(store.getState(), KEY) );
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+
 
 export default store;

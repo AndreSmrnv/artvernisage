@@ -1,15 +1,14 @@
-import {FC}             from "react";
-import {NavLink}        from 'react-router-dom';
-import cn               from 'classnames';
-import {getCategoryPath} from "../../../../services/api";
-import {NavigationState} from "../../../../services/actions/navigationSlice";
-import {useAppSelector} from "../../../../services/hooks";
-import s                from "./Groups.module.scss";
-
+import {FC}                 from "react";
+import {NavLink}            from 'react-router-dom';
+import cn                   from 'classnames';
+import {getCategoryPath}    from "../../../../services/api";
+import {NavigationState}    from "../../../../services/actions/navigationSlice";
+import {useSelector}        from "../../../../services/hooks";
+import s                    from "./Groups.module.scss";
 
 
 export const Groups: FC = () => {
-    const { activeGroup, groupList, categories } = useAppSelector(state => state.navigation) as NavigationState;
+    const { activeGroup, groupList, categories } = useSelector(state => state.navigation) as NavigationState;
 
      return (
          <ul className={s.groups}>
@@ -26,4 +25,4 @@ export const Groups: FC = () => {
              ))}
          </ul>
      )
-}
+};

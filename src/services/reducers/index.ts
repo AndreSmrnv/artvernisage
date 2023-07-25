@@ -8,7 +8,7 @@ import cartReducer          from '../actions/cartSlice';
 import searchReducer        from '../actions/searchSlice';
 import serverReducer        from '../actions/serverSlice';
 
-export const rootReducer = combineReducers (
+const rootReducer = combineReducers (
     {
         navigation: navigationReducer,
         colors:     colorsReducer,
@@ -20,3 +20,5 @@ export const rootReducer = combineReducers (
         server:     serverReducer,
     }
 );
+
+export { rootReducer };

@@ -2,15 +2,15 @@ import {FC, useEffect}                  from "react";
 import {fetchGoods}                     from "../../services/actions/goodsSlice";
 import {FavoriteState, resetFavorite}   from "../../services/actions/favoriteSlice";
 import {useLocationParams}              from "../../services/hooks/useLocationParams";
-import {useAppDispatch, useAppSelector} from "../../services/hooks";
+import {useDispatch, useSelector} from "../../services/hooks";
 import {Goods}                          from "../../components/goods";
 import {InfoMsg}                        from "../../components/info-msg";
 
 
 
 export const FavoritePage:FC = () => {
-    const dispatch = useAppDispatch();
-    const { goods } = useAppSelector(state => state.favorite) as FavoriteState;
+    const dispatch = useDispatch();
+    const { goods } = useSelector(state => state.favorite) as FavoriteState;
     const page = useLocationParams('page');
 
     useEffect(() => {

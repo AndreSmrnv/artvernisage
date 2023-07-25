@@ -1,5 +1,5 @@
 import {FC}             from "react";
-import {useAppSelector} from "../../services/hooks";
+import {useSelector}    from "../../services/hooks";
 import {Container}      from "../layout/container";
 import {Product}        from "../product";
 import {Pagination}     from "./pagination";
@@ -12,7 +12,7 @@ interface IGoodsProps {
 }
 
 export const Goods: FC<IGoodsProps> = ({title = 'Новинки'}) => {
-    const {goodList} = useAppSelector(state => state.goods) as GoodsState;
+    const {goodList} = useSelector(state => state.goods) as GoodsState;
     return (
         <section className={s.goods}>
             <Container>

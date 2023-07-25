@@ -1,8 +1,8 @@
 import {CSSProperties, FC} from "react";
-import cn               from 'classnames';
-import s from './ColorList.module.scss';
-import {useAppSelector} from "../../services/hooks";
-import {ColorsState} from "../../services/actions/colorsSlice";
+import cn                   from 'classnames';
+import {useSelector}        from "../../services/hooks";
+import {ColorsState}        from "../../services/actions/colorsSlice";
+import s                    from './ColorList.module.scss';
 
 export const getColorById = (id: number, colorList: API.Colors) =>  colorList.find(color => color.id === id);
 
@@ -13,7 +13,7 @@ interface IColorListProps {
 }
 
 export const ColorList: FC<IColorListProps> = ({colors, activeColor= colors[0] , onChange}) => {
-    const {colorList: _colorList} = useAppSelector(state => state.colors) as ColorsState;
+    const {colorList: _colorList} = useSelector(state => state.colors) as ColorsState;
     const colorList = colors ? _colorList.filter(color => colors.includes(color.id)) : [];
 
     return (
