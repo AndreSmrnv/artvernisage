@@ -20,7 +20,7 @@ export const CartItem:FC<ICartItemProps> = ({id, count}) => {
     const { goodList: {goods} } = useSelector(state => state.goods);
     const { colorList } = useSelector(state => state.colors);
     const good = getGoodById(id, goods);
-    const {pic, title, price, colors, size: sizes} = good as API.Good;
+    const {pic, title, price, colors, size: sizes} = good as APITypes.Good;
 
     const code = colors && colorList ? getColorById(colors[random(colors)],colorList)?.code : 'black';
     const size = sizes ? sizes[random(sizes)] : '';

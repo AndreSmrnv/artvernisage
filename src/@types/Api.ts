@@ -1,10 +1,10 @@
 /**
  * API types
- * @namespace  API
+ * @namespace  APITypes
 
  * */
 
-namespace API {
+namespace APITypes {
 
     export type CategoriesResponse = Categories;
 

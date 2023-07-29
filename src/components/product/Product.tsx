@@ -5,7 +5,7 @@ import {getPicPath, getProductPath} from "../../services/api";
 import s                            from './Product.module.scss';
 import {FavoriteButton} from "./btn-favorite/FavoriteButton";
 
-export const Product: FC<API.Good> = (
+export const Product: FC<APITypes.Good> = (
     {
         id,
         pic,
