@@ -10,8 +10,9 @@ import {Loader}                         from "../../components/layout/loader";
 
 
 export const FavoritePage:FC = () => {
-    const dispatch = useDispatch();
-    const { goods, status } = useSelector(state => state.favorite) as FavoriteState;
+    const dispatch      = useDispatch();
+    const { goods }     = useSelector(state => state.favorite) as FavoriteState;
+    const { status }    = useSelector(state => state.goods);
     const page = useLocationParams('page');
 
     useEffect(() => {

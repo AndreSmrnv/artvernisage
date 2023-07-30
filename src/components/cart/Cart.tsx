@@ -1,22 +1,20 @@
 import {FC, useEffect, useState} from "react";
 import {Container}      from "../layout/container";
-import {useDispatch, useSelector} from "../../services/hooks";
+import {useSelector}    from "../../services/hooks";
 import {CartList}       from "./cart-list";
 import s                from "./Cart.module.scss";
-import {fetchGoods} from "../../services/actions/goodsSlice";
+
+
 
 
 export const Cart:FC = () => {
-    const dispatch = useDispatch();
     const { cartItems, countItems }   = useSelector(state => state.cart);
     const [totalPrice, setTotalPrice] = useState(0);
 
     useEffect(
         () => {
-            const list = cartItems?.map(item => item.id).join(',') ?? '';
-            dispatch( fetchGoods( {list} ) );
-            const currTotalPrice = Array.isArray(cartItems)
-                ? cartItems.reduce((s, {count, price}) => count * price + s, 0)
+            const currTotalPrice = cartItems && Array.isArray(cartItems)
+                ? cartItems.reduce((sum, {count, price}) => count * price + sum, 0)
                 : 0
             ;
             setTotalPrice(currTotalPrice);

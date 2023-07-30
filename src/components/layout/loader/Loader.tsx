@@ -1,10 +1,10 @@
 import {FC, ReactNode, useEffect, useState} from "react";
-import {SpinInfitity} from "./SpinInfinity";
+import {SpinInfitity}                       from "./SpinInfinity";
 
 interface ILoaderProps {
-    children: ReactNode;
-    loading?: boolean;
-    status?: MainTypes.Status;
+    children:   ReactNode;
+    loading?:   boolean;
+    status?:    MainTypes.Status;
     
 }
 
@@ -23,7 +23,7 @@ export const Loader:FC<ILoaderProps> = (
                 ? ['idle', 'loading'].includes(status)
                 : _loading
             ;
-            setLoading( next )
+            setLoading(next)
         },
         [status, _loading]
     )

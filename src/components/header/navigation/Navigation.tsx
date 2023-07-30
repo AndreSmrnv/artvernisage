@@ -1,11 +1,12 @@
 import {FC, useEffect}  from "react";
-import {useDispatch}    from "react-redux";
 import {useParams}      from 'react-router-dom';
-import {Container} from "../../layout/container";
-import {Category} from "./category";
-import {Groups} from "./groups";
-import s from "./Navigation.module.scss";
 import {setActiveGroup} from "../../../services/actions/navigationSlice";
+import {useDispatch}    from "../../../services/hooks";
+import {Container}      from "../../layout/container";
+import {Category}       from "./category";
+import {Groups}         from "./groups";
+import s                from "./Navigation.module.scss";
+
 
 
 export const Navigation: FC = () => {

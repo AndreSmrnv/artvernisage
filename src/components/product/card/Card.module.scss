@@ -172,6 +172,7 @@
 }
 
 .addCart {
+  min-width: 164px;
   background-color: #000;
   color: #fff;
   font-weight: 700;
@@ -180,12 +181,16 @@
   text-transform: uppercase;
   white-space: nowrap;
   border: none;
-  padding: 14px 41px 15px;
+  padding: 14px 0 15px;
   margin-right: 16px;
   transition: background-color 0.2s ease-in-out;
 
-  &:hover {
+  &:hover:not(:disabled) {
     background-color: #8a8a8a;
+  }
+  &:disabled {
+    opacity: 0.3;
+    cursor: default;
   }
 
   @media (max-width: 768px) {

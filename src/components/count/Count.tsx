@@ -18,11 +18,7 @@ export const Count:FC<ICountProps> = (
     const [count, setCount] = useState(value);
 
     useEffect(
-        () => setCount(value),
-        [value]
-    );
-    useEffect(
-        () => onChange && onChange(count),
+        () => {onChange && onChange(count)},
         [count]
     );
 
