@@ -1,17 +1,9 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-const getItemIdx = (id: string, items: Array<TCartItem>) => items?.findIndex(item => item.id === id);
-
-type TCartItem = {
-    id:         string
-    count:      number;
-    price:      number;
-    colorId:    number
-    size:       string;
-}
+const getItemIdx = (id: string, items: APITypes.CartItems) => items?.findIndex(item => item.id === id);
 
 export interface CartState {
-    cartItems:  Array<TCartItem>
+    cartItems:  APITypes.CartItems
     countItems: number;
 }
 

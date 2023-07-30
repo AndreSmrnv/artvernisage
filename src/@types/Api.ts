@@ -76,6 +76,16 @@ namespace APITypes {
     export type SearchParams = {
         [k: string]:  any
     }
+
+    export type CartItem = {
+        id:         string
+        count:      number;
+        price:      number;
+        colorId:    number
+        size:       string;
+    }
+
+    export type CartItems = Array<CartItem>;
 }
 
 /*
