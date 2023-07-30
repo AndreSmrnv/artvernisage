@@ -14,7 +14,8 @@ import {Loader}                         from "../../components/layout/loader";
 export const MainPage: FC = () => {
     const {groupId: gender, categoryId: category} = useParams();
     const dispatch = useDispatch();
-    const {activeGroup, categories, status} = useSelector(state => state.navigation) as NavigationState;
+    const {activeGroup, categories} = useSelector(state => state.navigation) as NavigationState;
+    const { status }    = useSelector(state => state.goods);
     const page = useLocationParams('page');
     const groupData = categories[activeGroup];
     const categoryData = groupData?.list.find( item => item.slug === category);

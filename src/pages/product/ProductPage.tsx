@@ -13,6 +13,7 @@ export const ProductPage:FC = () => {
     const dispatch = useDispatch();
     const { product, status } = useSelector(state => state.product) as ProductState;
 
+
     useEffect(() => {
         productId && dispatch( fetchProduct( productId ) );
     }, [productId]);
