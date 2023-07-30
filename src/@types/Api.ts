@@ -1,10 +1,10 @@
 /**
  * API types
- * @namespace  API
+ * @namespace  APITypes
 
  * */
 
-namespace API {
+namespace APITypes {
 
     export type CategoriesResponse = Categories;
 
@@ -76,6 +76,16 @@ namespace API {
     export type SearchParams = {
         [k: string]:  any
     }
+
+    export type CartItem = {
+        id:         string
+        count:      number;
+        price:      number;
+        colorId:    number
+        size:       string;
+    }
+
+    export type CartItems = Array<CartItem>;
 }
 
 /*

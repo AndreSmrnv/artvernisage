@@ -19,3 +19,10 @@
   align-items: center;
   justify-content: center;
 }
+.btn {
+  transition: color 0.2s ease-in-out;
+
+  &:hover {
+    color: #8a8a8a;
+  }
+}

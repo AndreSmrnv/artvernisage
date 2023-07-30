@@ -2,15 +2,17 @@ import {FC, useEffect}                  from "react";
 import {fetchGoods}                     from "../../services/actions/goodsSlice";
 import {FavoriteState, resetFavorite}   from "../../services/actions/favoriteSlice";
 import {useLocationParams}              from "../../services/hooks/useLocationParams";
-import {useDispatch, useSelector} from "../../services/hooks";
+import {useDispatch, useSelector}       from "../../services/hooks";
 import {Goods}                          from "../../components/goods";
 import {InfoMsg}                        from "../../components/info-msg";
+import {Loader}                         from "../../components/layout/loader";
 
 
 
 export const FavoritePage:FC = () => {
-    const dispatch = useDispatch();
-    const { goods } = useSelector(state => state.favorite) as FavoriteState;
+    const dispatch      = useDispatch();
+    const { goods }     = useSelector(state => state.favorite) as FavoriteState;
+    const { status }    = useSelector(state => state.goods);
     const page = useLocationParams('page');
 
     useEffect(() => {
@@ -23,11 +25,11 @@ export const FavoritePage:FC = () => {
 
     
     return (
-        <>
+        <Loader status={status}>
             { goods?.length > 0
                 ? <Goods title={'Вам понравилось'} />
                 : <InfoMsg message={'Кажется Вы ничего не подобрали себе ;)'}/>
             }
-        </>
+        </Loader>
     )
 };

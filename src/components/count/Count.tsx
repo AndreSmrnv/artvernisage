@@ -18,11 +18,7 @@ export const Count:FC<ICountProps> = (
     const [count, setCount] = useState(value);
 
     useEffect(
-        () => setCount(value),
-        [value]
-    );
-    useEffect(
-        () => onChange && onChange(count),
+        () => {onChange && onChange(count)},
         [count]
     );
 
@@ -32,7 +28,7 @@ export const Count:FC<ICountProps> = (
     return (
         <div className={cn(s.count, className)}>
             <button type={'button'}
-                    className={s.item}
+                    className={cn(s.item, s.btn)}
                     onClick={handleDecrement}
             >
                 -
@@ -41,7 +37,7 @@ export const Count:FC<ICountProps> = (
                 {count}
             </span>
             <button type={'button'}
-                    className={s.item}
+                    className={cn(s.item, s.btn)}
                     onClick={handleIncrement}
             >
                 +
