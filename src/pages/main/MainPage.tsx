@@ -9,8 +9,6 @@ import {NavigationState}                from "../../services/actions/navigationS
 import {Loader}                         from "../../components/layout/loader";
 
 
-
-
 export const MainPage: FC = () => {
     const {groupId: gender, categoryId: category} = useParams();
     const dispatch = useDispatch();
@@ -21,7 +19,7 @@ export const MainPage: FC = () => {
     const categoryData = groupData?.list.find( item => item.slug === category);
 
     useEffect(() => {
-        dispatch( fetchGoods( {gender, category, page } ) );
+        dispatch( fetchGoods( {gender, category, page} ) );
     }, [gender, category, page]);
 
     return (

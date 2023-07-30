@@ -21,7 +21,7 @@ export const Top = () => {
     return (
         <div className={s.top}>
             <Container className={s.topContainer}>
-                <a className={cn(s.topLink, s.topPhone)} href="tel:89304902620">8 930 490 26 20</a>
+                <a className={cn(s.topLink, s.topPhone)} href="tel:89301234567">8 930 123 45 67</a>
 
                 <a className={s.topLogo} href="/">
                     <Logo/>
