@@ -3,8 +3,8 @@ import {CATEGORIES_URL} from "../api";
 
 export interface NavigationState {
     activeGroup:    string;
-    status:         'idle' | 'loading' | 'success' | 'failed';
-    categories:     API.Categories;
+    status:         MainTypes.Status;
+    categories:     APITypes.Categories;
     groupList:      Array<string>;
     error:          string | null;
 }
@@ -18,12 +18,12 @@ const initialState: NavigationState = {
 };
 
 
-export const fetchNavigation = createAsyncThunk<API.CategoriesResponse>(
+export const fetchNavigation = createAsyncThunk<APITypes.CategoriesResponse>(
     "navigation/fetchNavigation",
     async () => {
         const url = new URL(CATEGORIES_URL);
         const response = await fetch(url);
-        const data: API.CategoriesResponse = await response.json();
+        const data: APITypes.CategoriesResponse = await response.json();
         return data;
     }
 )

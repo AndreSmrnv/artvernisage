@@ -6,7 +6,7 @@ import s                from './Banner.module.scss'
 import {useWindowBreakpoint} from "../../services/subjects/";
 
 interface IBannerProps {
-    banner: API.Banner
+    banner: APITypes.Banner
 }
 
 export const Banner:FC<IBannerProps> = ( {banner} ) => {

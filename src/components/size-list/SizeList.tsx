@@ -2,7 +2,7 @@ import {ChangeEvent, FC} from "react";
 import s                            from './Size.module.scss';
 
 interface ISizeListProps {
-    size: API.SizeList,
+    size: APITypes.SizeList,
     activeSize: string;
     onChange: (value: string)=>void;
 }

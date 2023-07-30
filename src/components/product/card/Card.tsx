@@ -1,6 +1,6 @@
 import {FC, FormEvent, useEffect, useState} from "react";
 import cn                           from 'classnames';
-import {addIdCart}                  from "../../../services/actions/cartSlice";
+import {addIdCart, rmIdCart} from "../../../services/actions/cartSlice";
 import {useDispatch, useSelector}   from "../../../services/hooks";
 import {ProductState}               from "../../../services/actions/productSlice";
 import {Container}                  from "../../layout/container";
@@ -24,6 +24,7 @@ export const Card:FC = () => {
         price,
         description,
     } = product;
+    const isAlreadyInCart = useSelector(state => state.cart?.cartItems?.map(item => item.id).includes(id));
     const dispatch = useDispatch();
     const [activeColor, setActiveColor] = useState(0);
     const [activeSize, setActiveSize] = useState('');
@@ -42,7 +43,10 @@ export const Card:FC = () => {
 
     const formSubmitHandler = (e:FormEvent) => {
         e.preventDefault();
-        dispatch(addIdCart({id, count}));
+        isAlreadyInCart
+            ? dispatch(rmIdCart(id))
+            : dispatch(addIdCart({id, count, price, colorId: activeColor, size: activeSize}))
+        ;
     }
 
     return (
@@ -78,8 +82,8 @@ export const Card:FC = () => {
 
                     <div className={s.control} >
                         <Count className={s.count} value={count} onChange={setCount}/>
-                        <button className={s.addCart} type={'submit'}>
-                            В корзину
+                        <button className={s.addCart} type={'submit'} disabled={!count || !activeColor || !activeSize}>
+                            {isAlreadyInCart ? 'Из корзины' : 'В корзину'}
                         </button>
                         <FavoriteButton productId={id}/>
                     </div>

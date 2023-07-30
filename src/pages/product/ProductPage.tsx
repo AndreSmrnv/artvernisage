@@ -5,12 +5,14 @@ import {fetchGoods}                 from "../../services/actions/goodsSlice";
 import {useDispatch, useSelector}   from "../../services/hooks";
 import {Card}                       from "../../components/product/card";
 import {Goods}                      from "../../components/goods";
+import {Loader}                     from "../../components/layout/loader";
 
 
 export const ProductPage:FC = () => {
     const {productId} = useParams();
     const dispatch = useDispatch();
-    const { product } = useSelector(state => state.product) as ProductState;
+    const { product, status } = useSelector(state => state.product) as ProductState;
+
 
     useEffect(() => {
         productId && dispatch( fetchProduct( productId ) );
@@ -22,9 +24,9 @@ export const ProductPage:FC = () => {
     }, [product]);
 
     return (
-        <>
+        <Loader status={status}>
             <Card />
             <Goods title={'Вам может понравиться'} />
-        </>
+        </Loader>
     )
 }

@@ -1,13 +1,13 @@
 import {FC} from "react";
 import {useLocation} from "react-router-dom";
 import {useNavigateSearch} from "../../../services/hooks/useNavigateSearch";
+import {useLocationParams} from "../../../services/hooks/useLocationParams";
 import s from "./Pagintaion.module.scss";
 import cn from "classnames";
-import {useLocationParams} from "../../../services/hooks/useLocationParams";
 
 interface IPaginationProps {
     page: number | string;
-    pages: number| string;
+    pages: number | string;
 }
 
 export const Pagination: FC<IPaginationProps> = ({page, pages}) => {

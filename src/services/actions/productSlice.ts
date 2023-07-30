@@ -2,8 +2,8 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import {GOODS_URL} from "../api";
 
 export interface ProductState {
-    status:       'idle' | 'loading' | 'success' | 'failed';
-    product:     API.Good ;
+    status:       MainTypes.Status;
+    product:      APITypes.Good ;
     error:        string | null;
 }
 
@@ -19,7 +19,7 @@ export const fetchProduct  = createAsyncThunk(
         const url = new URL(`${GOODS_URL}/${id}`);
 
         const response = await fetch(url);
-        const data: API.ProductResponse = await response.json();
+        const data: APITypes.ProductResponse = await response.json();
         return data;
     }
 )

@@ -15,15 +15,9 @@ const tsRules = {
   '@typescript-eslint/no-unused-vars': 'off',
   '@typescript-eslint/no-namespace': 'off',
   '@typescript-eslint/no-floating-promises': 'off',
-  "no-restricted-imports": "off",
-  "@typescript-eslint/no-restricted-imports": [
-    "warn",
-    {
-      "name": "react-redux",
-      "importNames": ["useSelector", "useDispatch"],
-      "message": "Use typed hooks `useAppDispatch` and `useAppSelector` instead."
-    }
-  ],
+  'no-restricted-imports': 'off',
+  'no-extra-boolean-cast': 'off',
+  '@typescript-eslint/no-unnecessary-type-assertion': 'off',
   '@typescript-eslint/no-unsafe-call': 'off',
   '@typescript-eslint/no-unsafe-return': 'off',
 };

@@ -3,7 +3,7 @@ import {GOODS_URL} from "../api";
 
 export interface GoodsState {
     status:       'idle' | 'loading' | 'success' | 'failed';
-    goodList:     API.Goods;
+    goodList:     APITypes.Goods;
     error:        string | null;
 }
 
@@ -20,12 +20,12 @@ const initialState: GoodsState = {
 
 export const fetchGoods = createAsyncThunk(
     "goods/fetchGoods",
-    async (searchParams: API.SearchParams) => {
+    async (searchParams: APITypes.SearchParams) => {
         const url = new URL(GOODS_URL);
         Object.entries(searchParams).forEach( param => param[1] && url.searchParams.append(...param) );
 
         const response = await fetch(url);
-        const data: API.GoodsResponse = await response.json();
+        const data: APITypes.GoodsResponse = await response.json();
 
         //console.debug("goods/fetchGoods", {data})
 

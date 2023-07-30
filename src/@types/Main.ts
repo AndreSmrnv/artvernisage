@@ -14,4 +14,6 @@ namespace MainTypes {
     }
 
     export type Reducer<S> = <A extends Action>(state: S, action: A) => S;
+
+    export type Status = 'idle' | 'loading' | 'success' | 'failed';
 }

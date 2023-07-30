@@ -2,8 +2,8 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import {COLORS_URL} from "../api";
 
 export interface ColorsState {
-    status:         'idle' | 'loading' | 'success' | 'failed';
-    colorList: Array<API.Color>
+    status:         MainTypes.Status;
+    colorList:      Array<APITypes.Color>
     error:          string | null;
 }
 

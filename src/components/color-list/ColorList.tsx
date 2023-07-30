@@ -4,7 +4,7 @@ import {useSelector}        from "../../services/hooks";
 import {ColorsState}        from "../../services/actions/colorsSlice";
 import s                    from './ColorList.module.scss';
 
-export const getColorById = (id: number, colorList: API.Colors) =>  colorList.find(color => color.id === id);
+export const getColorById = (id: number, colorList: APITypes.Colors) =>  colorList.find(color => color.id === id);
 
 interface IColorListProps {
     colors: Array<number>;

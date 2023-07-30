@@ -1,8 +1,7 @@
 import {CSSProperties, FC}              from "react";
 import cn                               from "classnames";
 import {useDispatch, useSelector}       from "../../../services/hooks";
-import {rmIdCart}                       from "../../../services/actions/cartSlice";
-import {random}                         from "../../../services";
+import {patchIdCart, rmIdCart}          from "../../../services/actions/cartSlice";
 import {getColorById}                   from "../../color-list/ColorList";
 import {getGoodById}                    from "../cart-list/CartList";
 import {getPicPath}                     from "../../../services/api";
@@ -10,22 +9,19 @@ import {Count}                          from "../../count";
 import s                                from "./CartItem.module.scss";
 
 
-interface ICartItemProps {
-    id:     string;
-    count:  number;
-}
-
-export const CartItem:FC<ICartItemProps> = ({id, count}) => {
+export const CartItem:FC<APITypes.CartItem> = ({id, count, colorId, size}) => {
     const dispatch = useDispatch();
     const { goodList: {goods} } = useSelector(state => state.goods);
     const { colorList } = useSelector(state => state.colors);
     const good = getGoodById(id, goods);
-    const {pic, title, price, colors, size: sizes} = good as API.Good;
+    const {pic, title, price} = good as APITypes.Good;
 
-    const code = colors && colorList ? getColorById(colors[random(colors)],colorList)?.code : 'black';
-    const size = sizes ? sizes[random(sizes)] : '';
+    const code = colorId && colorList ? getColorById(colorId,colorList)?.code : 'black';
+
 
     const rmGoodHandler = () =>  dispatch(rmIdCart(id));
+
+    const changeCountHandler = (count: number) => dispatch( patchIdCart({id, count}) );
 
     return (
         <article className={s.item}>
@@ -55,9 +51,9 @@ export const CartItem:FC<ICartItemProps> = ({id, count}) => {
                 </div>
             </div>
 
-            <button className={s.del} type={'button'} onClick={rmGoodHandler}/>
-            <Count value={ count } />
 
+            <Count value={ count }  onChange={changeCountHandler} />
+            <button className={s.del} type={'button'} onClick={rmGoodHandler}/>
 
         </article>
     )
