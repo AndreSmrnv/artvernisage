@@ -55,9 +55,9 @@ export const CartItem:FC<ICartItemProps> = ({id, count}) => {
                 </div>
             </div>
 
-            <button className={s.del} type={'button'} onClick={rmGoodHandler}/>
-            <Count value={ count } />
 
+            <Count value={ count } />
+            <button className={s.del} type={'button'} onClick={rmGoodHandler}/>
 
         </article>
     )

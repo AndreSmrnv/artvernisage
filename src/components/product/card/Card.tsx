@@ -42,7 +42,7 @@ export const Card:FC = () => {
 
     const formSubmitHandler = (e:FormEvent) => {
         e.preventDefault();
-        dispatch(addIdCart({id, count}));
+        dispatch(addIdCart({id, count, price}));
     }
 
     return (
