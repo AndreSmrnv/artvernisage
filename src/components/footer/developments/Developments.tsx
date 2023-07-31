@@ -10,8 +10,9 @@ export const Developments: FC = () => (
             </li>
             <li className={s.developmentItem}>
                 Developer:
-                <a className={s.link} href="https://vk.com/andresmrnv"> Andre Smrnv</a>
+                <a className={s.link} href="https://t.me/AndreSmrnv"> Andre Smrnv</a>
             </li>
         </ul>
     </div>
 );
+

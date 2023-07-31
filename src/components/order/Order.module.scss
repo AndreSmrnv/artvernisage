@@ -154,6 +154,15 @@
   padding: 14px 41px 15px;
   justify-self: end;
   align-self: end;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover:not(:disabled) {
+    background-color: #8a8a8a;
+  }
+  &:disabled {
+    opacity: 0.3;
+    cursor: default;
+  }
 
   @media (max-width: 768px) {
     padding: 12px 41px;
