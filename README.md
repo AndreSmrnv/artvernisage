@@ -48,5 +48,4 @@ The following scripts are available to streamline your development workflow:
 
 - **`npm run dev`** : Starts the development server and provides hot reloading for an optimized development experience.
 - **`npm run build`** : Builds the application for production, generating optimized and minified assets.
-- **`npm run lint`** : Lints your codebase using ESLint to enforce code quality and conventions.
-- **`npm run check-types`**: Avoid TypeScript errors in project by using the TypeScript compiler.
+- **`npm run check-types`** : Avoid TypeScript errors in project by using the TypeScript compiler.
