@@ -11,7 +11,7 @@
 
 ## Getting Started
 
-To use this starter kit, follow these steps:
+To use this demoShop, follow these steps:
 
 1. Clone the repository to your local machine using the following command:
 
