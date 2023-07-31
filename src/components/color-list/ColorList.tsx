@@ -12,7 +12,7 @@ interface IColorListProps {
     onChange?: (id: number)=>void;
 }
 
-export const ColorList: FC<IColorListProps> = ({colors, activeColor= colors[0] , onChange}) => {
+export const ColorList: FC<IColorListProps> = ({colors, activeColor, onChange}) => {
     const {colorList: _colorList} = useSelector(state => state.colors) as ColorsState;
     const colorList = colors ? _colorList.filter(color => colors.includes(color.id)) : [];
 
